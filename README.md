@@ -6,6 +6,6 @@ O site tem como objetivo o usuário visualizar as notícias em qualquer lugar do
 APIs e bibliotecas utilizadas: 
 - https://react-leaflet.js.org/
 - https://rapidapi.com/newscatcher-api-newscatcher-api-default/api/free-news/
-- 
+
 Mapeamento de fluxos inicial do projeto: 
 [Fluxo-Inicial.drawio.pdf](https://github.com/insper-tecnologias-web/projeto-3-lll/files/8779015/Fluxo-Inicial.drawio.pdf)
