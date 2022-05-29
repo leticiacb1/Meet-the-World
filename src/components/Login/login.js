@@ -11,9 +11,11 @@ function Login() {
   const [user, setUser] = useState('') 
   const [password, setPassword] = useState('')
 
+  const navigate = useNavigate();
+
   function handleSubmit(event){
-    event.preventDefault()  
-    console.log("Submitou")
+    event.preventDefault();
+    navigate('/home');
   }
 
   return (
@@ -36,6 +38,8 @@ function Login() {
                 <div className="divButtonLogin">
                     <button type="Submit" className="buttonLogin">Login</button>
                 </div>
+
+                <span className="containerNewAccount"><Link to = '/register' className="newAccount"> Create an account </Link></span> : <span></span>
             
             </form>
         </div>
