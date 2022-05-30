@@ -39,7 +39,7 @@ function Login() {
                     <button type="Submit" className="buttonLogin">Login</button>
                 </div>
 
-                <span className="containerNewAccount"><Link to = '/register' className="newAccount"> Create an account </Link></span> : <span></span>
+                <span className="containerNewAccount"><Link to = '/register' className="newAccount"> Create an account </Link></span>
             
             </form>
         </div>
