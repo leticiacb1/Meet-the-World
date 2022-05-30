@@ -9,10 +9,8 @@ const axios = require("axios");
 
 
 
-const paisesComCoordenadas = [{'name':'Andorra',  'coordenadas': 
-[42.546245, 1.601554]
-}
-,
+const paisesComCoordenadas = [
+
 {'name':'United Arab Emirates',  'coordenadas': 
 [23.424076, 53.847818]
 }
@@ -20,26 +18,7 @@ const paisesComCoordenadas = [{'name':'Andorra',  'coordenadas':
 {'name':'Afghanistan',  'coordenadas': 
 [3.3939109999999997, 67.709953]
 }
-,
-{'name':'Antigua and Barbuda',  'coordenadas': 
-[17.060816, -61.796428]
-}
-,
-{'name':'Anguilla',  'coordenadas': 
-[18.220554, -63.068614999999994]
-}
-,
-{'name':'Albania',  'coordenadas': 
-[41.153332, 20.168331]
-}
-,
-{'name':'Armenia',  'coordenadas': 
-[40.069099, 45.038188999999996]
-}
-,
-{'name':'Netherlands Antilles',  'coordenadas': 
-[12.226078999999999, -69.060087]
-}
+
 ,
 {'name':'Angola',  'coordenadas': 
 [-11.202691999999999, 17.873887]
@@ -51,14 +30,6 @@ const paisesComCoordenadas = [{'name':'Andorra',  'coordenadas':
 ,
 {'name':'Argentina',  'coordenadas': 
 [-38.416097, -63.616671999999994]
-}
-,
-{'name':'American Samoa',  'coordenadas': 
-[-14.270971999999999, -170.132217]
-}
-,
-{'name':'Austria',  'coordenadas': 
-[47.516231, 14.550072]
 }
 ,
 {'name':'Australia',  'coordenadas': 
@@ -73,44 +44,12 @@ const paisesComCoordenadas = [{'name':'Andorra',  'coordenadas':
 [40.143105, 47.576927]
 }
 ,
-{'name':'Bosnia and Herzegovina',  'coordenadas': 
-[43.915886, 17.679076]
-}
-,
-{'name':'Barbados',  'coordenadas': 
-[13.193887, -59.543198]
-}
-,
 {'name':'Bangladesh',  'coordenadas': 
 [23.684994, 90.356331]
 }
 ,
-{'name':'Belgium',  'coordenadas': 
-[50.503887, 4.469936]
-}
-,
-{'name':'Burkina Faso',  'coordenadas': 
-[12.238332999999999, -1.561593]
-}
-,
-{'name':'Bulgaria',  'coordenadas': 
-[42.733883, 2.548583]
-}
-,
 {'name':'Bahrain',  'coordenadas': 
 [25.930414, 50.637772]
-}
-,
-{'name':'Burundi',  'coordenadas': 
-[-3.373056, 29.918885999999997]
-}
-,
-{'name':'Benin',  'coordenadas': 
-[0.930769, 2.3158339999999997]
-}
-,
-{'name':'Bermuda',  'coordenadas': 
-[32.321384, -6.475737]
 }
 ,
 {'name':'Brunei',  'coordenadas': 
@@ -124,10 +63,7 @@ const paisesComCoordenadas = [{'name':'Andorra',  'coordenadas':
 {'name':'Brazil',  'coordenadas': 
 [-15.748357, -47.893657]
 }
-,
-{'name':'Bahamas',  'coordenadas': 
-[2.503428, -7.739628]
-}
+
 ,
 {'name':'Bhutan',  'coordenadas': 
 [27.514162, 90.433601]
@@ -157,24 +93,12 @@ const paisesComCoordenadas = [{'name':'Andorra',  'coordenadas':
 [-12.164164999999999, 96.87095599999999]
 }
 ,
-{'name':'Congo [DRC]',  'coordenadas': 
-[-4.038333, 21.758664]
-}
-,
 {'name':'Central African Republic',  'coordenadas': 
 [6.611110999999999, 20.939443999999998]
 }
 ,
-{'name':'Congo [Republic]',  'coordenadas': 
-[-2.28021e-07, 15.827658999999999]
-}
-,
 {'name':'Switzerland',  'coordenadas': 
 [46.818188, 8.227511999999999]
-}
-,
-{'name':'Côte dIvoire',  'coordenadas': 
-[7.539988999999999, -0.554708]
 }
 ,
 {'name':'Cook Islands',  'coordenadas': 
@@ -183,10 +107,6 @@ const paisesComCoordenadas = [{'name':'Andorra',  'coordenadas':
 ,
 {'name':'Chile',  'coordenadas': 
 [-35.675146999999996, -71.542969]
-}
-,
-{'name':'Cameroon',  'coordenadas': 
-[7.369721999999999, 12.354721999999999]
 }
 ,
 {'name':'China',  'coordenadas': 
@@ -217,28 +137,12 @@ const paisesComCoordenadas = [{'name':'Andorra',  'coordenadas':
 [35.126413, 33.429859]
 }
 ,
-{'name':'Czech Republic',  'coordenadas': 
-[49.817491999999994, 15.472961999999999]
-}
-,
 {'name':'Germany',  'coordenadas': 
 [51.165690999999995, 10.451526]
 }
 ,
 {'name':'Djibouti',  'coordenadas': 
 [11.825137999999999, 42.590275]
-}
-,
-{'name':'Denmark',  'coordenadas': 
-[5.626392, 9.501785]
-}
-,
-{'name':'Dominica',  'coordenadas': 
-[15.414999, -61.370976]
-}
-,
-{'name':'Dominican Republic',  'coordenadas': 
-[18.735692999999998, -70.162651]
 }
 ,
 {'name':'Algeria',  'coordenadas': 
@@ -255,10 +159,6 @@ const paisesComCoordenadas = [{'name':'Andorra',  'coordenadas':
 ,
 {'name':'Egypt',  'coordenadas': 
 [26.820553, 30.802498]
-}
-,
-{'name':'Western Sahara',  'coordenadas': 
-[24.215526999999998, -12.885834]
 }
 ,
 {'name':'Eritrea',  'coordenadas': 
@@ -297,56 +197,12 @@ const paisesComCoordenadas = [{'name':'Andorra',  'coordenadas':
 [46.227638, 2.213749]
 }
 ,
-{'name':'Gabon',  'coordenadas': 
-[-8.036889999999999e-07, 11.609444]
-}
-,
 {'name':'United Kingdom',  'coordenadas': 
 [55.378051, -3.4359729999999997]
 }
 ,
-{'name':'Grenada',  'coordenadas': 
-[12.262775999999999, -61.604170999999994]
-}
-,
-{'name':'Georgia',  'coordenadas': 
-[42.315407, 43.356891999999995]
-}
-,
-{'name':'French Guiana',  'coordenadas': 
-[3.9338889999999997, -53.125782]
-}
-,
-{'name':'Guernsey',  'coordenadas': 
-[49.465691, -2.5852779999999997]
-}
-,
-{'name':'Ghana',  'coordenadas': 
-[7.946527, -1.023194]
-}
-,
-{'name':'Gibraltar',  'coordenadas': 
-[36.137741, -5.345374]
-}
-,
 {'name':'Greenland',  'coordenadas': 
 [71.706936, -42.604303]
-}
-,
-{'name':'Gambia',  'coordenadas': 
-[13.443182, -15.310139]
-}
-,
-{'name':'Guinea',  'coordenadas': 
-[9.945587, -9.696645]
-}
-,
-{'name':'Guadeloupe',  'coordenadas': 
-[16.995971, -62.067640999999995]
-}
-,
-{'name':'Equatorial Guinea',  'coordenadas': 
-[1.650801, 10.267895]
 }
 ,
 {'name':'Greece',  'coordenadas': 
@@ -356,26 +212,7 @@ const paisesComCoordenadas = [{'name':'Andorra',  'coordenadas':
 {'name':'South Georgia and the South Sandwich Islands',  'coordenadas': 
 [-54.429579, -36.587908999999996]
 }
-,
-{'name':'Guatemala',  'coordenadas': 
-[15.783470999999999, -90.23075899999999]
-}
-,
-{'name':'Guam',  'coordenadas': 
-[13.444303999999999, 144.79373099999998]
-}
-,
-{'name':'Guinea-Bissau',  'coordenadas': 
-[11.803749, -15.180413]
-}
-,
-{'name':'Guyana',  'coordenadas': 
-[4.860416, -5.893018]
-}
-,
-{'name':'Gaza Strip',  'coordenadas': 
-[31.354675999999998, 34.308825]
-}
+
 ,
 {'name':'Hong Kong',  'coordenadas': 
 [22.396428, 114.10949699999999]
@@ -385,45 +222,27 @@ const paisesComCoordenadas = [{'name':'Andorra',  'coordenadas':
 [-5.308180999999999, 73.50415799999999]
 }
 ,
-{'name':'Honduras',  'coordenadas': 
-[15.199999, -86.241905]
-}
-,
-{'name':'Croatia',  'coordenadas': 
-[4.51e-05, 1.5199999999999998e-05]
-}
-,
 {'name':'Haiti',  'coordenadas': 
 [18.971187, -72.285215]
 }
-,
-{'name':'Hungary',  'coordenadas': 
-[47.162493999999995, 19.503304]
-}
+
 ,
 {'name':'Indonesia',  'coordenadas': 
 [-7.89275e-07, 113.92132699999999]
 }
 ,
 {'name':'Ireland',  'coordenadas': 
-[5.341291, -0.8243889999999999]
+[53.1424, 7.6921]
 }
 ,
 {'name':'Israel',  'coordenadas': 
 [31.046051, 34.851611999999996]
 }
 ,
-{'name':'Isle of Man',  'coordenadas': 
-[54.236107, -4.548056]
-}
-,
 {'name':'India',  'coordenadas': 
 [20.593684, 7.896287999999999]
 }
-,
-{'name':'British Indian Ocean Territory',  'coordenadas': 
-[-6.3431939999999996, 71.876519]
-}
+
 ,
 {'name':'Iraq',  'coordenadas': 
 [33.223191, 43.679291]
@@ -438,28 +257,14 @@ const paisesComCoordenadas = [{'name':'Andorra',  'coordenadas':
 }
 ,
 {'name':'Italy',  'coordenadas': 
-[4.187194, 1.256738]
+[41.902782, 12.496366]
 }
-,
-{'name':'Jersey',  'coordenadas': 
-[49.214439, -0.21312499999999998]
-}
-,
-{'name':'Jamaica',  'coordenadas': 
-[18.109581, -77.297508]
-}
-,
-{'name':'Jordan',  'coordenadas': 
-[30.585164, 36.238414]
-}
+
 ,
 {'name':'Japan',  'coordenadas': 
 [36.204823999999995, 138.252924]
 }
-,
-{'name':'Kenya',  'coordenadas': 
-[-2.3559e-08, 37.906193]
-}
+
 ,
 {'name':'Kyrgyzstan',  'coordenadas': 
 [4.120438, 74.766098]
@@ -469,17 +274,10 @@ const paisesComCoordenadas = [{'name':'Andorra',  'coordenadas':
 [12.565679, 104.990963]
 }
 ,
-{'name':'Kiribati',  'coordenadas': 
-[-3.3704169999999998, -168.734039]
-}
-,
 {'name':'Comoros',  'coordenadas': 
 [-11.875001, 43.872219]
 }
-,
-{'name':'Saint Kitts and Nevis',  'coordenadas': 
-[17.357822, -62.782998]
-}
+
 ,
 {'name':'North Korea',  'coordenadas': 
 [40.339852, 127.510093]
@@ -487,10 +285,6 @@ const paisesComCoordenadas = [{'name':'Andorra',  'coordenadas':
 ,
 {'name':'South Korea',  'coordenadas': 
 [35.907757, 127.766922]
-}
-,
-{'name':'Kuwait',  'coordenadas': 
-[2.9311659999999997, 47.481766]
 }
 ,
 {'name':'Cayman Islands',  'coordenadas': 
@@ -501,64 +295,16 @@ const paisesComCoordenadas = [{'name':'Andorra',  'coordenadas':
 [48.019573, 66.923684]
 }
 ,
-{'name':'Laos',  'coordenadas': 
-[1.9856269999999998, 102.49549599999999]
-}
-,
-{'name':'Lebanon',  'coordenadas': 
-[33.854721, 35.862285]
-}
-,
-{'name':'Saint Lucia',  'coordenadas': 
-[13.909443999999999, -60.978893]
-}
-,
-{'name':'Liechtenstein',  'coordenadas': 
-[0.047166, 9.555373]
-}
-,
-{'name':'Sri Lanka',  'coordenadas': 
-[7.873054, 80.77179699999999]
-}
-,
-{'name':'Liberia',  'coordenadas': 
-[6.428055, -9.429499]
-}
-,
 {'name':'Lesotho',  'coordenadas': 
 [-29.609987999999998, 28.233608]
-}
-,
-{'name':'Lithuania',  'coordenadas': 
-[55.169438, 23.881275]
-}
-,
-{'name':'Luxembourg',  'coordenadas': 
-[49.815273, 6.129582999999999]
-}
-,
-{'name':'Latvia',  'coordenadas': 
-[56.879635, 24.603189]
-}
-,
-{'name':'Libya',  'coordenadas': 
-[0.263351, 17.228331]
 }
 ,
 {'name':'Morocco',  'coordenadas': 
 [31.791701999999997, -0.709262]
 }
 ,
-{'name':'Monaco',  'coordenadas': 
-[43.750298, 7.412840999999999]
-}
-,
 {'name':'Moldova',  'coordenadas': 
 [47.411631, 28.369885]
-}
-,
-{'name':'Montenegro',  'coordenadas': 
-[42.708678, 1.937439]
 }
 ,
 {'name':'Madagascar',  'coordenadas': 
@@ -569,40 +315,12 @@ const paisesComCoordenadas = [{'name':'Andorra',  'coordenadas':
 [7.131474, 171.18447799999998]
 }
 ,
-{'name':'Macedonia [FYROM]',  'coordenadas': 
-[41.608635, 21.745275]
-}
-,
-{'name':'Mali',  'coordenadas': 
-[17.570691999999998, -3.9961659999999997]
-}
-,
 {'name':'Myanmar [Burma]',  'coordenadas': 
 [21.913964999999997, 95.956223]
 }
 ,
 {'name':'Mongolia',  'coordenadas': 
 [46.862496, 103.846656]
-}
-,
-{'name':'Macau',  'coordenadas': 
-[22.198745, 113.54387299999999]
-}
-,
-{'name':'Northern Mariana Islands',  'coordenadas': 
-[1.733083, 14.538469]
-}
-,
-{'name':'Martinique',  'coordenadas': 
-[14.641528, -61.024173999999995]
-}
-,
-{'name':'Mauritania',  'coordenadas': 
-[2.100789, -10.940835]
-}
-,
-{'name':'Montserrat',  'coordenadas': 
-[16.742497999999998, -62.187366]
 }
 ,
 {'name':'Malta',  'coordenadas': 
@@ -614,7 +332,7 @@ const paisesComCoordenadas = [{'name':'Andorra',  'coordenadas':
 }
 ,
 {'name':'Maldives',  'coordenadas': 
-[3.202778, 7.322068]
+[1.924992, 73.399658]
 }
 ,
 {'name':'Malawi',  'coordenadas': 
@@ -633,21 +351,11 @@ const paisesComCoordenadas = [{'name':'Andorra',  'coordenadas':
 [-18.665695, 35.529562]
 }
 ,
-{'name':'Namibia',  'coordenadas': 
-[-2.2957639999999997, 1.849041]
-}
-,
 {'name':'New Caledonia',  'coordenadas': 
 [-20.904305, 165.618042]
 }
-,
-{'name':'Niger',  'coordenadas': 
-[17.607789, 8.081666]
-}
-,
-{'name':'Norfolk Island',  'coordenadas': 
-[-29.040834999999998, 167.954712]
-}
+
+
 ,
 {'name':'Nigeria',  'coordenadas': 
 [9.081999, 8.675277]
@@ -655,10 +363,6 @@ const paisesComCoordenadas = [{'name':'Andorra',  'coordenadas':
 ,
 {'name':'Nicaragua',  'coordenadas': 
 [12.865416, -85.207229]
-}
-,
-{'name':'Netherlands',  'coordenadas': 
-[52.132633, 5.291265999999999]
 }
 ,
 {'name':'Norway',  'coordenadas': 
@@ -679,14 +383,6 @@ const paisesComCoordenadas = [{'name':'Andorra',  'coordenadas':
 ,
 {'name':'New Zealand',  'coordenadas': 
 [-40.900557, 174.88597099999998]
-}
-,
-{'name':'Oman',  'coordenadas': 
-[21.512583, 55.923255]
-}
-,
-{'name':'Panama',  'coordenadas': 
-[8.537981, -80.782127]
 }
 ,
 {'name':'Peru',  'coordenadas': 
@@ -712,49 +408,18 @@ const paisesComCoordenadas = [{'name':'Andorra',  'coordenadas':
 {'name':'Poland',  'coordenadas': 
 [51.919438, 19.145136]
 }
-,
-{'name':'Saint Pierre and Miquelon',  'coordenadas': 
-[46.941936, -5.627110999999999]
-}
-,
-{'name':'Pitcairn Islands',  'coordenadas': 
-[-24.703615, -127.439308]
-}
+
 ,
 {'name':'Puerto Rico',  'coordenadas': 
 [18.220833, -66.590149]
-}
-,
-{'name':'Palestinian Territories',  'coordenadas': 
-[31.952161999999998, 35.233154]
 }
 ,
 {'name':'Portugal',  'coordenadas': 
 [39.399871999999995, -8.224454]
 }
 ,
-{'name':'Palau',  'coordenadas': 
-[0.751498, 13.458252]
-}
-,
 {'name':'Paraguay',  'coordenadas': 
 [-23.442503, -58.443832]
-}
-,
-{'name':'Qatar',  'coordenadas': 
-[25.354826, 51.183884]
-}
-,
-{'name':'Réunion',  'coordenadas': 
-[-21.115140999999998, 55.536384]
-}
-,
-{'name':'Romania',  'coordenadas': 
-[45.943160999999996, 2.496676]
-}
-,
-{'name':'Serbia',  'coordenadas': 
-[44.016521, 21.005858999999997]
 }
 ,
 {'name':'Russia',  'coordenadas': 
@@ -793,25 +458,10 @@ const paisesComCoordenadas = [{'name':'Andorra',  'coordenadas':
 [-24.143473999999998, -10.030695999999999]
 }
 ,
-{'name':'Slovenia',  'coordenadas': 
-[46.151241, 14.995462999999999]
-}
-,
-{'name':'Svalbard and Jan Mayen',  'coordenadas': 
-[77.55360399999999, 23.670272]
-}
-,
 {'name':'Slovakia',  'coordenadas': 
 [48.669025999999995, 19.699023999999998]
 }
-,
-{'name':'Sierra Leone',  'coordenadas': 
-[8.460555, -11.779888999999999]
-}
-,
-{'name':'San Marino',  'coordenadas': 
-[4.394235999999999, 12.457777]
-}
+
 ,
 {'name':'Senegal',  'coordenadas': 
 [14.497401, -14.452361999999999]
@@ -825,24 +475,8 @@ const paisesComCoordenadas = [{'name':'Andorra',  'coordenadas':
 [3.919305, -56.027783]
 }
 ,
-{'name':'São Tomé and Príncipe',  'coordenadas': 
-[1.8635999999999998e-07, 6.613080999999999]
-}
-,
-{'name':'El Salvador',  'coordenadas': 
-[13.794184999999999, -8.889653]
-}
-,
 {'name':'Syria',  'coordenadas': 
 [34.802074999999995, 38.996815]
-}
-,
-{'name':'Swaziland',  'coordenadas': 
-[-26.522503, 31.465866]
-}
-,
-{'name':'Turks and Caicos Islands',  'coordenadas': 
-[21.694025, -71.797928]
 }
 ,
 {'name':'Chad',  'coordenadas': 
@@ -888,30 +522,12 @@ const paisesComCoordenadas = [{'name':'Andorra',  'coordenadas':
 {'name':'Turkey',  'coordenadas': 
 [38.963744999999996, 35.243322]
 }
-,
-{'name':'Trinidad and Tobago',  'coordenadas': 
-[10.691803, -61.222502999999996]
-}
-,
-{'name':'Tuvalu',  'coordenadas': 
-[-7.109534999999999, 17.764933]
-}
+
 ,
 {'name':'Taiwan',  'coordenadas': 
 [2.3697809999999997, 120.960515]
 }
-,
-{'name':'Tanzania',  'coordenadas': 
-[-6.369028, 34.888822]
-}
-,
-{'name':'Ukraine',  'coordenadas': 
-[48.379433, 3.116558]
-}
-,
-{'name':'Uganda',  'coordenadas': 
-[1.373333, 32.290275]
-}
+
 ,
 {'name':'United States',  'coordenadas': 
 [3.709024, -95.712891]
@@ -925,44 +541,12 @@ const paisesComCoordenadas = [{'name':'Andorra',  'coordenadas':
 [41.377491, 64.585262]
 }
 ,
-{'name':'Vatican City',  'coordenadas': 
-[41.902916, 12.453389]
-}
-,
-{'name':'Saint Vincent and the Grenadines',  'coordenadas': 
-[12.984304999999999, -61.287228]
-}
-,
-{'name':'Venezuela',  'coordenadas': 
-[0.6423749999999999, -6.658973]
-}
-,
-{'name':'British Virgin Islands',  'coordenadas': 
-[18.420695, -64.639968]
-}
-,
-{'name':'U.S. Virgin Islands',  'coordenadas': 
-[18.335765, -64.896335]
-}
-,
 {'name':'Vietnam',  'coordenadas': 
 [14.058323999999999, 108.277199]
 }
 ,
 {'name':'Vanuatu',  'coordenadas': 
 [-15.376705999999999, 166.959158]
-}
-,
-{'name':'Wallis and Futuna',  'coordenadas': 
-[-13.768752, -177.156097]
-}
-,
-{'name':'Samoa',  'coordenadas': 
-[-13.759029, -172.104629]
-}
-,
-{'name':'Kosovo',  'coordenadas': 
-[42.602636, 20.902977]
 }
 ,
 {'name':'Yemen',  'coordenadas': 
@@ -1012,6 +596,7 @@ function pegaNoticias(nomeDoPais){
         console.log("Data de publicação: "+ response.data.articles[0].published_date);
         console.log("Título: "+response.data.articles[0].title);
         console.log("Resumo: "+response.data.articles[0].summary);
+        console.log(response.data.articles[0].media);
       }).catch(function (error) {
           console.error(error);
       });
@@ -1051,7 +636,7 @@ function Mapa(){
     return(
             
             <div className="teste">
-            <MapContainer className="teste" center={[20, 0]} zoom={2.2} scrollWheelZoom={false} zoomControl={false} dragging={false} >
+            <MapContainer className="teste" center={[20, 0]} zoom={2.2} scrollWheelZoom={false} zoomControl={true} dragging={true} >
             <TileLayer className="teste2"
                 attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
                 url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
