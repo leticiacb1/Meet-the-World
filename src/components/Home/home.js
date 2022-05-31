@@ -1,13 +1,13 @@
 import React from "react";
 import './home.css';
+import AccountCircleSharpIcon from '@mui/icons-material/AccountCircleSharp';
+import GitHubIcon from '@mui/icons-material/GitHub';
 import pointerImg from './pointer.png';
 import L from 'leaflet';
 import { MapContainer, TileLayer, useMap, Map, Marker, Popup } from 'react-leaflet'
 import { useNavigate , useLocation} from "react-router-dom";
 
 const axios = require("axios");
-
-
 
 const paisesComCoordenadas = [
 
@@ -628,31 +628,33 @@ function Mapa(){
     navigate('/interests', {state: {country: name}} );
   }    
 
-
-
-
-
-
     return(
             
-            <div className="teste">
-            <MapContainer className="teste" center={[20, 0]} zoom={2.2} scrollWheelZoom={false} zoomControl={true} dragging={true} >
-            <TileLayer className="teste2"
-                attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-                url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-            />
+            <div className="containerMap">
+              <div className="header">
+                <h3 className="mapHeader">Random Word</h3>
+                <AccountCircleSharpIcon sx={{ color: "white" }} fontSize="large" ></AccountCircleSharpIcon>
+                <GitHubIcon sx={{ color: "white" }} fontSize="large"></GitHubIcon>
+              </div>
+              <div className="screenMap">
+                <MapContainer className="map" center={[32, 10]} zoom={1.5} scrollWheelZoom={false} zoomControl={false} dragging={true} >
+                <TileLayer className="teste2"
+                    attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                    url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                />
 
 
-            {paisesComCoordenadas.map((e)=>{
-            return(
-                <Marker position={e.coordenadas} icon={pointIcon}>
-                    <Popup>
-                        <a onClick={()=>goToDetails(e.name)}>{e.name}</a>
-                    </Popup>
-                </Marker>
-            );})}
-            
-            </MapContainer>
+                {paisesComCoordenadas.map((e)=>{
+                return(
+                    <Marker position={e.coordenadas} icon={pointIcon}>
+                        <Popup>
+                            <a onClick={()=>goToDetails(e.name)}>{e.name}</a>
+                        </Popup>
+                    </Marker>
+                );})}
+                
+                </MapContainer>
+              </div>
             </div>
     )
 }
