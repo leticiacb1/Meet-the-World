@@ -577,8 +577,6 @@ var pointIcon = L.icon({
     
 });
 
-
-
 function pegaNoticias(nomeDoPais){
     const api_key = 'd35271b5512d5f4a4cb3e77e2aadbb34'
     const options = {
@@ -633,8 +631,10 @@ function Mapa(){
             <div className="containerMap">
               <div className="header">
                 <h3 className="mapHeader">Random Word</h3>
-                <AccountCircleSharpIcon sx={{ color: "white" }} fontSize="large" ></AccountCircleSharpIcon>
-                <GitHubIcon sx={{ color: "white" }} fontSize="large"></GitHubIcon>
+                <div className="divIconsHeader">
+                  <AccountCircleSharpIcon sx={{ color: "white" }} fontSize="large" ></AccountCircleSharpIcon>
+                  <GitHubIcon sx={{ color: "white" }} fontSize="large"></GitHubIcon>
+                </div>
               </div>
               <div className="screenMap">
                 <MapContainer className="map" center={[32, 10]} zoom={1.5} scrollWheelZoom={false} zoomControl={false} dragging={true} >
