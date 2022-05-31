@@ -27,9 +27,6 @@
     margin-right: -rem;
     width: 10%;
 }
-.username{
-
-}
 
 .headerNews{
     display: flex;
@@ -64,36 +61,77 @@ logoutButton {
 
 .infosConteiner{
     display: flex;
-}
-
-
-.newsConteiner{
-    width: 50%;
-    margin-left: 1rem;;
+    flex-direction: column;
 }
 
 .musicConteiner{
-    width: 50%;
-    margin-left: 1rem;;
+    width: 100%;
+    height: 30%;
+
+    display: flex;
+    flex-direction: column;
 }
 
-.newsCard{
-    width: 30%;
-    /* border: blue; */
-    background: lightgray;
-    border-radius: 7%;
-    margin-left: 0.5rem;
-    margin-right: 0.5rem;
-    margin-top: 00.5rem;
+.newsConteiner{
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 .newsCardConteiner{
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
 
 }
 
+.newsCard{
+    width: 25%;
+    height: 25rem;
+
+    background: lightgray;
+    border-radius: 0.8rem;
+
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
+    margin-top: 0.5rem;
+    margin-bottom: 2rem;
+
+    border: none;
+    box-shadow: 0 1px 12px rgba(0, 0, 0, 0.4);
+}
+
+.mediaNews{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    height: 10%;
+    width: 20%;
+}
+
+.newsTitle{
+
+    height: 10%;
+    width: 100%;
+
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.newsResume{
+    font-size: xx-small;
+}
+
+.shareButton{
+    height: 10%;
+}
 
 .headerMusic{
     display: flex;
@@ -143,8 +181,4 @@ logoutButton {
     border: none;
     border-radius: 1rem;
     
-}
-
-.mediaNews{
-    width: 50%;
 }

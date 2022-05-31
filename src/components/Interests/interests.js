@@ -1,5 +1,7 @@
 import React, {useEffect, useState} from "react";
 import './interests.css';
+import AccountCircleSharpIcon from '@mui/icons-material/AccountCircleSharp';
+import GitHubIcon from '@mui/icons-material/GitHub';
 import { useNavigate , useLocation} from "react-router-dom";
 
 const axios = require("axios");
@@ -97,37 +99,15 @@ function Detalhes() {
     }
 
   return <div>
-      <div className="Header">
-          <div className="divExtra">
-            <div className="perfilOptions">
-                <button className="logoutButton">SHARE</button>
-                <img className="persona" src="https://www.promoview.com.br/uploads/2017/04/b72a1cfe.png" alt="persona"></img>
-                <h3 className="username">Perfil</h3>
-            </div>
-          </div>
-      </div>
-    <div className="infosConteiner">
-    <div className="newsConteiner">
-        <div className="headerNews"><h2>News</h2></div>
-            <div className="newsCardConteiner">
-               
-                {news.map((noticias) => (
-                    <div className="newsCard">
-                        <div className="newsInfo">
-                        <img src={noticias.media} className="mediaNews" alt="newsImage"/>
-                        <h2>{noticias.title}</h2>
-                        <p>{noticias.resume}</p>
-                    </div>
-                    <div className="shareButton">
-                        <button className="logoutButton">SHARE</button>
-                    </div>
-                </div>
-                                
-                ))}
-
+      <div className="header">
+        <h3 className="headerContent">Random Word</h3>
+        <div className="divIconsHeader">
+            <AccountCircleSharpIcon sx={{ color: "white" }} fontSize="large" ></AccountCircleSharpIcon>
+            <GitHubIcon sx={{ color: "white" }} fontSize="large"></GitHubIcon>
         </div>
-     </div>
-     <div className="musicConteiner">
+      </div>
+
+      <div className="musicConteiner">
         <div className="headerMusic"><h2>Top Musics</h2></div>
             <div className="musiccardsConteiner">
 
@@ -151,7 +131,29 @@ function Detalhes() {
                                 
                 ))}
             </div>
-    </div>
+        </div>
+    <div className="infosConteiner">
+    <div className="newsConteiner">
+        <div className="headerNews"><h2>News</h2></div>
+            <div className="newsCardConteiner">
+               
+                {news.map((noticias) => (
+                    <div className="newsCard">
+                        <div className="newsInfo">
+                            <img src={noticias.media} className="mediaNews" alt="newsImage"/>
+                            <h4 className="newsTitle">{noticias.title}</h4>
+                            <div className="newsResume">{noticias.resume}</div>
+                        </div>
+                        <div className="shareButton">
+                            <button className="logoutButton">SHARE</button>
+                        </div>
+                    </div>
+                                
+                ))}
+
+        </div>
+     </div>
+     
   </div>
   </div>;
 }
