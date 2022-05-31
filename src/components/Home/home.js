@@ -630,7 +630,7 @@ function Mapa(){
             
             <div className="containerMap">
               <div className="header">
-                <h3 className="mapHeader">Random Word</h3>
+                <h3 className="headerContent">Random Word</h3>
                 <div className="divIconsHeader">
                   <AccountCircleSharpIcon sx={{ color: "white" }} fontSize="large" ></AccountCircleSharpIcon>
                   <GitHubIcon sx={{ color: "white" }} fontSize="large"></GitHubIcon>
