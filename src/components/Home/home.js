@@ -637,7 +637,7 @@ function Mapa(){
                 </div>
               </div>
               <div className="screenMap">
-                <MapContainer className="map" center={[32, 10]} zoom={1.5} scrollWheelZoom={false} zoomControl={false} dragging={true} >
+                <MapContainer className="map" center={[32, 0]} zoom={1.5} scrollWheelZoom={false} zoomControl={false} dragging={true} >
                 <TileLayer className="teste2"
                     attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
                     url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
