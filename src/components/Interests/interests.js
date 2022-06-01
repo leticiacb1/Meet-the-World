@@ -4,12 +4,14 @@ import AccountCircleSharpIcon from '@mui/icons-material/AccountCircleSharp';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import { useNavigate , useLocation} from "react-router-dom";
 
+import Header from '../Header/header.js'
+
 const axios = require("axios");
 const api_key = 'd35271b5512d5f4a4cb3e77e2aadbb34'
 
 
 function Detalhes() {
-    // const navigate = useNavigate();
+    const navigate = useNavigate();
     const location = useLocation();
     const countryName = location.state.country;
 
@@ -22,22 +24,17 @@ function Detalhes() {
         response.data.tracks.track.slice(1,).map((track) => (
                 auxiMusics.push({"name": track.name, "artist": track.artist.name})
         ))
-        //setMusics(auxiMusics);
-        // console.log("Função pegaMusicas:")
-        // console.log(auxiMusics);
-        // console.log("Chamando a função pega imagens...");
-
+        
         let musicsWithImg = await getImages(auxiMusics);
         console.log("EM PEGA MUSICAS")
         console.log(musicsWithImg)
-        // setMusics(musicsWithImg)
         return musicsWithImg
     }
 
     async function pegaNoticias(nomeDoPais){
        
         var auxiNews = [];
-        // console.log("Pegando notícias na função...");
+        
         const options = {
             method: 'GET',
             url: 'https://free-news.p.rapidapi.com/v1/search',
@@ -49,13 +46,7 @@ function Detalhes() {
           };
           
         axios.request(options).then(function (response) {
-            // console.log("_________Notícia_______");
-            // console.log("Data de publicação: "+ response.data.articles[0].published_date);
-            // console.log("Título: "+response.data.articles[0].title);
-            // console.log("Resumo: "+response.data.articles[0].summary);
-            // console.log(response.data.articles);
-            // auxiNews.push({"title": response.data.articles[0].title, "resume": response.data.articles[0].summary, "media": response.data.articles[0].media})
-            // setNews(auxiNews);
+            
             response.data.articles.map((article) => (
                 auxiNews.push({"title": article.title, "resume": article.summary.slice(0,600), "media": article.media, "link":article.link})
             ))
@@ -72,18 +63,12 @@ function Detalhes() {
     async function getImages(tracks){
         var auxiMusics = [];
 
-        // console.log("Entrou na função que pega imagens");
-        // console.log("O que eu recebi de argumento foi: ");
-        // console.log(tracks)
-
         let response;
         tracks.map(async function(track){
-            // console.log("Pesquisando: "+track.name +" "+ track.artist);
             response = await axios.get('https://deezerdevs-deezer.p.rapidapi.com/search', {params: {q: track.name +" "+ track.artist}, headers: {
                 'X-RapidAPI-Host': 'deezerdevs-deezer.p.rapidapi.com',
                 'X-RapidAPI-Key': '09d9de731fmshd33bae78ac7cd2cp17a01fjsn2d4af2cbc8e8',
               }});
-            // console.log(response);
             try{
             auxiMusics.push({"name": track.name, "artist": track.artist, "img": response.data.data[0].album.cover})
             }
@@ -95,10 +80,11 @@ function Detalhes() {
         console.log("EM PEGA IMAGEM")
         console.log(auxiMusics);
         return auxiMusics;
-        // console.log(auxiMusics);
-        // setMusics(auxiMusics);
-        // console.log("Terminou de rodar a função que pega imagens");
-        // console.log(musics);
+    }
+
+    function goToPerfil(){
+        console.log("Cliqueiiii")
+        navigate('/favorits')
     }
 
     useEffect(()=>{
@@ -110,17 +96,11 @@ function Detalhes() {
                 setMusics(response);
             }
         );
-        
     },[]);
 
   return <div>
-      <div className="header">
-        <h3 className="headerContent">Random Word</h3>
-        <div className="divIconsHeader">
-            <AccountCircleSharpIcon sx={{ color: "white" }} fontSize="large" ></AccountCircleSharpIcon>
-            <GitHubIcon sx={{ color: "white" }} fontSize="large"></GitHubIcon>
-        </div>
-      </div>
+      
+      <Header></Header>
 
       <div className="musicConteiner">
         <div className="headerMusic"><h2>Top Musics</h2></div>

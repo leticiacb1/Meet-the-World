@@ -626,14 +626,23 @@ function Mapa(){
     navigate('/interests', {state: {country: name}} );
   }    
 
+  function goToPerfil(){
+    console.log("Cliqueiiii")
+    navigate('/favorits')
+  }
+
     return(
             
             <div className="containerMap">
               <div className="header">
                 <h3 className="headerContent">Random Word</h3>
                 <div className="divIconsHeader">
-                  <AccountCircleSharpIcon sx={{ color: "white" }} fontSize="large" ></AccountCircleSharpIcon>
-                  <GitHubIcon sx={{ color: "white" }} fontSize="large"></GitHubIcon>
+                  <button onClick={goToPerfil} className="btn_icon">
+                      <AccountCircleSharpIcon sx={{ color: "white" , fontSize: 40}}></AccountCircleSharpIcon>
+                  </button>
+                  <button className="btn_icon">
+                      <GitHubIcon sx={{ color: "white" }} fontSize="large"></GitHubIcon>
+                  </button>
                 </div>
               </div>
               <div className="screenMap">
