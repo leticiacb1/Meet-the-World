@@ -7,8 +7,12 @@ import Backgroung from "../Background/background.js"
 import axios from 'axios';
 
 function Register() {
-
-  const [user, setUser] = useState('') 
+  
+  const [firstName , setFirstName] = useState('') 
+  const [lastName , setLastName] = useState('')
+  const [userName, setUserName] = useState('') 
+  const [email, setEmail] = useState('') 
+  const [region, setRegion] = useState('')
   const [password, setPassword] = useState('')
 
   const navigate = useNavigate();
@@ -28,22 +32,22 @@ function Register() {
                 
                 <div className="userCreate">
                     <label className="textRegister"> First Name</label>
-                    <input type="text" id="username" onChange={(username) => setUser(username.target.value)}/>
+                    <input type="text" onChange={(firstName) => setFirstName(firstName.target.value)}/>
                 </div>
 
                 <div className="userCreate">
                     <label className="textRegister"> Last Name</label>
-                    <input type="text" id="username" onChange={(username) => setUser(username.target.value)}/>
+                    <input type="text" onChange={(lastName) => setLastName(lastName.target.value)}/>
                 </div>
 
                 <div className="userCreate">
                     <label className="textRegister"> Username</label>
-                    <input type="text" id="username" onChange={(username) => setUser(username.target.value)}/>
+                    <input type="text" onChange={(username) => setUserName(username.target.value)}/>
                 </div>
 
                 <div className="userCreate">
                     <label className="textRegister"> Email</label>
-                    <input type="text" id="username" onChange={(username) => setUser(username.target.value)}/>
+                    <input type="text" onChange={(email) => setEmail(email.target.value)}/>
                 </div>
 
                 <div className="userCreate">
@@ -63,7 +67,7 @@ function Register() {
                 
                 <div className="userCreate">
                     <label className="textRegister"> Password  </label>
-                    <input type="password" id="password" onChange={(senha) => setPassword(senha.target.value)}/>
+                    <input type="password" onChange={(password) => setPassword(password.target.value)}/>
                 </div>
 
                 <div className="divButtonCreate">
