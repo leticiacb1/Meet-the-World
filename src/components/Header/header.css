@@ -6,7 +6,9 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background:linear-gradient(0deg, #070e29, #04081b);
+    /* background:linear-gradient(0deg, #070e29, #04081b); */
+    background:linear-gradient(180deg, 	#125599, #01030c);
+
 }
 .divIconsHeader{
     display: flex;
