@@ -164,12 +164,12 @@ function Detalhes() {
                                 <div className="contentResume">
                                     <div className="newsResume">{noticias.resume} </div>
                                 </div>
-                                <a className="readmoreTag" href={noticias.link}>Read more</a>
-
                             </div>
                             <div className="divshareButton">
                                 <button className="shareButton">SHARE</button>
                             </div>
+                            <a className="readmoreTag" href={noticias.link} target="_blank">Read more</a>
+                            
                         </div>
 
                     ))}
