@@ -5,6 +5,8 @@ import StarIcon from '@mui/icons-material/Star';
 
 import Header from '../Header/header.js'
 import loadGif from './loadingGif.gif'
+import headerNews from './headerNews.jpeg'
+import headerMusic from './headerMusic.jpeg'
 
 const axios = require("axios");
 const api_key = 'd35271b5512d5f4a4cb3e77e2aadbb34'
@@ -22,7 +24,7 @@ function Detalhes() {
     let [songNotSelected, setSongNotSelected] = useState(true);
     
     async function pegaMusicas(nomeDoPais) {
-        let response = await axios.get('http://ws.audioscrobbler.com/2.0/?method=geo.gettoptracks&country=' + nomeDoPais.toLowerCase() + '&api_key=' + api_key + '&format=json', { params: { limit: 5 } });
+        let response = await axios.get('http://ws.audioscrobbler.com/2.0/?method=geo.gettoptracks&country=' + nomeDoPais.toLowerCase() + '&api_key=' + api_key + '&format=json', { params: { limit: 6 } });
         const auxiMusics = response.data.tracks.track.slice(1,).map((track) => (
             { "name": track.name, "artist": track.artist.name }
          
@@ -141,7 +143,10 @@ function Detalhes() {
             <div className="containerNewsMusic">
                 <div className="infosConteiner">
                     <div className="newsConteiner">
-                        <div className="headerNews"><h2>News</h2></div>
+                        <div className="headerNews">
+                            <img src={headerNews} style={{height:"3rem"}}></img>
+                            <h1>{countryName}</h1>
+                        </div>
                         <div className="newsCardConteiner">
 
                             {news.map((noticias, index) => (
@@ -169,7 +174,10 @@ function Detalhes() {
 
                 </div>
                 <div className="musicConteiner">
-                    <div className="headerMusic"><h2>Top Musics</h2></div>
+                    <div className="headerMusic">
+                        <img src={headerMusic} style={{height:"2rem"}}></img>
+                        <h2>{countryName}</h2>
+                    </div>
                     <div className="musiccardsConteiner">
 
                         {musics.map((musica) => (
@@ -198,16 +206,16 @@ function Detalhes() {
                             </div>
 
                         ))}
-                    <div>
-                        <h5>Clique em uma imagem de música:</h5>
+                    <div className="infoMusicPlayer">
+                        <div className="instructiosPlayMusic"> 
+                            <div className="helptext">Ouça as músicas Top5 do país! Clique em uma música !</div>
+                        </div>
                     </div>
                     { songNotSelected ? 
         
-                    <div>
+                    <div></div> : 
 
-                    </div> : 
-
-                    <div>
+                    <div className="videoMusic">
                         <iframe
                             src= {serachIDlink}
                             frameborder="0"

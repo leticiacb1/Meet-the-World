@@ -257,7 +257,7 @@ const paisesComCoordenadas = [
 [-23.442503, -58.443832]
 }
 ,
-{'name':'Russia',  'coordenadas': 
+{'name':'Russian Federation',  'coordenadas': 
 [63.346501, 94.077145]
 }
 ,
