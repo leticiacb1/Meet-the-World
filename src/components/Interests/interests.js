@@ -4,6 +4,7 @@ import { useNavigate, useLocation } from "react-router-dom";
 import StarIcon from '@mui/icons-material/Star';
 
 import Header from '../Header/header.js'
+import loadGif from './loadingGif.gif'
 
 const axios = require("axios");
 const api_key = 'd35271b5512d5f4a4cb3e77e2aadbb34'
@@ -16,6 +17,7 @@ function Detalhes() {
 
     let [news, setNews] = useState(['']);
     let [musics, setMusics] = useState([]);
+    let [loading, setLoading] = useState(true)
 
     async function pegaMusicas(nomeDoPais) {
         let response = await axios.get('http://ws.audioscrobbler.com/2.0/?method=geo.gettoptracks&country=' + nomeDoPais.toLowerCase() + '&api_key=' + api_key + '&format=json', { params: { limit: 6 } });
@@ -27,6 +29,7 @@ function Detalhes() {
         console.log(response)
 
         let musicsWithImg = await getImages(auxiMusics);
+        setLoading(false)
         
         return musicsWithImg
     }
@@ -103,70 +106,75 @@ function Detalhes() {
 
         <Header goTo={backMap}></Header>
 
-        <div className="containerNewsMusic">
-        <div className="infosConteiner">
-            <div className="newsConteiner">
-                <div className="headerNews"><h2>News</h2></div>
-                <div className="newsCardConteiner">
+        { loading ? 
+        
+            <img src={loadGif} className="loadingGif"></img> : 
 
-                    {news.map((noticias, index) => (
-                        <div className="newsCard" key={"noticias_" + index}>
-                            <div className="newsInfo">
-                                <img src={noticias.media} className="mediaNews" alt="newsImage" />
-                                <div className="contentTitle">
-                                    <h4 className="newsTitle">{noticias.title}</h4>
+            <div className="containerNewsMusic">
+                <div className="infosConteiner">
+                    <div className="newsConteiner">
+                        <div className="headerNews"><h2>News</h2></div>
+                        <div className="newsCardConteiner">
+
+                            {news.map((noticias, index) => (
+                                <div className="newsCard" key={"noticias_" + index}>
+                                    <div className="newsInfo">
+                                        <img src={noticias.media} className="mediaNews" alt="newsImage" />
+                                        <div className="contentTitle">
+                                            <h4 className="newsTitle">{noticias.title}</h4>
+                                        </div>
+                                        <div className="contentResume">
+                                            <div className="newsResume">{noticias.resume} </div>
+                                        </div>
+
+                                        <a className="readmoreTag" href={noticias.link} target="_blank">Read more</a>
+                                    </div>
+                                    <div className="divshareButton">
+                                        <button className="shareButton">SHARE</button>
+                                    </div>
                                 </div>
-                                <div className="contentResume">
-                                    <div className="newsResume">{noticias.resume} </div>
-                                </div>
 
-                                <a className="readmoreTag" href={noticias.link} target="_blank">Read more</a>
-                            </div>
-                            <div className="divshareButton">
-                                <button className="shareButton">SHARE</button>
-                            </div>
-                        </div>
+                            ))}
 
-                    ))}
-
-                </div>
-            </div>
-
-        </div>
-        <div className="musicConteiner">
-            <div className="headerMusic"><h2>Top Musics</h2></div>
-            <div className="musiccardsConteiner">
-
-                {musics.map((musica) => (
-                    <div className="musicCard" key={musica.title}>
-
-                        {musica.img == null ?
-                            <div className="photoDiv">
-                                <img className="musicPhoto" src="https://e7.pngegg.com/pngimages/185/464/png-clipart-regulate-g-funk-era-g-funk-album-funk-music-album-drum-thumbnail.png" alt="CD"></img>
-                            </div> :
-                            <div className="photoDiv">
-                                <img className="musicPhoto" src={musica.img} alt="album"></img>
-                            </div>
-
-                        }
-                        <div className="musicInfo">
-                            <div className="divHeaderMusic">
-                                <div className="nameMusic">{musica.name}</div>
-                                <button className="musicFavoriteButton">
-                                    <StarIcon  sx={{ color: "black" , fontSize: 15}}></StarIcon>
-                                </button>
-                            </div>
-                            <div className="divContentPlay">
-                                <div className="nameArtistMusic">Artist : {musica.artist}</div>
-                            </div>
                         </div>
                     </div>
 
-                ))}
-            </div>
-        </div>
+                </div>
+                <div className="musicConteiner">
+                    <div className="headerMusic"><h2>Top Musics</h2></div>
+                    <div className="musiccardsConteiner">
+
+                        {musics.map((musica) => (
+                            <div className="musicCard" key={musica.title}>
+
+                                {musica.img == null ?
+                                    <div className="photoDiv">
+                                        <img className="musicPhoto" src="https://e7.pngegg.com/pngimages/185/464/png-clipart-regulate-g-funk-era-g-funk-album-funk-music-album-drum-thumbnail.png" alt="CD"></img>
+                                    </div> :
+                                    <div className="photoDiv">
+                                        <img className="musicPhoto" src={musica.img} alt="album"></img>
+                                    </div>
+
+                                }
+                                <div className="musicInfo">
+                                    <div className="divHeaderMusic">
+                                        <div className="nameMusic">{musica.name}</div>
+                                        <button className="musicFavoriteButton">
+                                            <StarIcon  sx={{ color: "black" , fontSize: 15}}></StarIcon>
+                                        </button>
+                                    </div>
+                                    <div className="divContentPlay">
+                                        <div className="nameArtistMusic">Artist : {musica.artist}</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        ))}
+                    </div>
+                </div>
+                </div>
+    }
         </div>;
-        </div>
 }
 
 export default Detalhes;

@@ -282,3 +282,11 @@ div .header{
 
     margin-right: 0.6rem;
 }
+
+.loadingGif{
+
+    position:absolute;
+
+    right: 40%;
+    top: 40%;
+}
