@@ -6,6 +6,7 @@ import pointerImg from './pointer.png';
 import L from 'leaflet';
 import { MapContainer, TileLayer, useMap, Map, Marker, Popup } from 'react-leaflet'
 import { useNavigate , useLocation} from "react-router-dom";
+import Header from '../Header/header.js'
 
 const axios = require("axios");
 
@@ -375,11 +376,6 @@ function pegaNoticias(nomeDoPais){
       };
       
       axios.request(options).then(function (response) {
-        console.log("_________Notícia_______");
-        console.log("Data de publicação: "+ response.data.articles[0].published_date);
-        console.log("Título: "+response.data.articles[0].title);
-        console.log("Resumo: "+response.data.articles[0].summary);
-        console.log(response.data.articles[0].media);
       }).catch(function (error) {
           console.error(error);
       });
@@ -390,10 +386,6 @@ function pegaNoticias(nomeDoPais){
       };
 
       axios.request(options2).then(function (response) {
-        console.log("_________Música _______");
-        console.log("Nome da música: "+response.data.tracks.track[0].name);
-        console.log("Artista: "+response.data.tracks.track[0].artist.name);
-        console.log("Ouvintes: "+response.data.tracks.track[0].listeners);
       }).catch(function (error) {
           console.error(error);
       });
@@ -407,7 +399,6 @@ function Mapa(){
   const location = useLocation();
 
   function goToDetails(name){
-    console.log("Indo para a proxima página");
     navigate('/interests', {state: {country: name}} );
   }    
 
@@ -417,39 +408,33 @@ function Mapa(){
   }
 
     return(
-            
-            <div className="containerMap">
-              <div className="header">
-                <h3 className="headerContent">Random Word</h3>
-                <div className="divIconsHeader">
-                  <button onClick={goToPerfil} className="btn_icon">
-                      <AccountCircleSharpIcon sx={{ color: "white" , fontSize: 40}}></AccountCircleSharpIcon>
-                  </button>
-                  <button className="btn_icon">
-                      <GitHubIcon sx={{ color: "white" }} fontSize="large"></GitHubIcon>
-                  </button>
+            <>
+              <div className="containerMap">
+
+                
+                <Header condicao="None" goTo="None"></Header>
+                <div className="screenMap">
+                  <MapContainer className="map" center={[32, 0]} zoom={1.5} scrollWheelZoom={false} zoomControl={true} dragging={true} >
+                  <TileLayer className="teste2"
+                      attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                      url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                  />
+
+
+                  {paisesComCoordenadas.map((e)=>{
+                  return(
+                      <Marker position={e.coordenadas} icon={pointIcon}>
+                          <Popup>
+                              <a onClick={()=>goToDetails(e.name)}>{e.name}</a>
+                          </Popup>
+                      </Marker>
+                  );})}
+                  
+                  </MapContainer>
                 </div>
               </div>
-              <div className="screenMap">
-                <MapContainer className="map" center={[32, 0]} zoom={1.5} scrollWheelZoom={false} zoomControl={true} dragging={true} >
-                <TileLayer className="teste2"
-                    attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-                    url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-                />
-
-
-                {paisesComCoordenadas.map((e)=>{
-                return(
-                    <Marker position={e.coordenadas} icon={pointIcon}>
-                        <Popup>
-                            <a onClick={()=>goToDetails(e.name)}>{e.name}</a>
-                        </Popup>
-                    </Marker>
-                );})}
-                
-                </MapContainer>
-              </div>
-            </div>
+            </>
+          
     )
 }
 

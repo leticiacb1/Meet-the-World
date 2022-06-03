@@ -2,6 +2,11 @@ div .header{
     position: fixed;
 }
 
+.containerInterests{
+    width: 100%;
+    height: 100%;
+}
+
 .divExtra{
     width: 100%;
     display: flex;
@@ -30,7 +35,7 @@ div .header{
     justify-content: flex-start;
     align-items: flex-start;
     margin-left: 1rem;
-    color: white;
+    color: black;
 }
 
 
@@ -45,17 +50,20 @@ div .header{
     /* margin-right: 21rem; */
 }
 
+.containerNewsMusic{
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+}
+
 .infosConteiner{
     display: flex;
     flex-direction: column;
-}
 
-.musicConteiner{
-    width: 100%;
-    height: 30%;
-
-    display: flex;
-    flex-direction: column;
+    width: 75%;
+    height: 100%;
+    
 }
 
 .newsConteiner{
@@ -78,7 +86,7 @@ div .header{
 
 .newsCard{
     width: 28%;
-    height: 28rem;
+    height: 25rem;
 
     background: lightgray;
     /* border-radius: 0.8rem; */
@@ -97,7 +105,7 @@ div .header{
     justify-content: center;
     align-items: center;
 
-    height: 11rem;
+    height: 10rem;
     width: 100%;
 }
 
@@ -124,7 +132,7 @@ div .header{
 
 .contentResume{
     width: 100%;
-    height: 8rem;
+    height: 6rem;
 
     display: flex;
     justify-content: center;
@@ -174,37 +182,46 @@ div .header{
     cursor: pointer;
 }
 
+.musicConteiner{
+    width: 25%;
+    height: 100%;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    position: fixed;
+    right: 1.2rem;
+
+    margin-top: 6rem;
+}
+
+.musiccardsConteiner{
+    width: 100%;
+    height: 100%;
+}
+
 .headerMusic{
     display: flex;
     justify-content: center;
     align-items: center;
 
-    color: white;
-
     width: 100%;
     height: 10%;
 
-    margin-top: 4rem;
+    font-size: small;
+    font-family: 'Courier New', Courier, monospace;
 }
 
 
 .musicCard{
-    width: 80%;
+    width: 100%;
+    height: 12%;
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-    transition: 0.3s;
     display: flex;
     flex-direction: row;
-    margin-top: 00.5rem;
-}
-
-.musicCard:hover {
-    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
-}
-
-.musicPhoto{
-    width: 100%;
-    border-radius: 100%;
-    
+    margin-top: 0.5rem;
 }
 
 .photoDiv{
@@ -214,7 +231,11 @@ div .header{
     align-items: center;
     width: 20%;
     height: 100%;
-    margin: 1rem;
+    
+}
+
+.musicPhoto{
+    height: 100%;
 }
 
 .musicInfo{
@@ -222,10 +243,42 @@ div .header{
     height: 100%;
 }
 
+.divHeaderMusic{
+    width: 100%;
+    height: 50%;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+
+}
+
+.divContentPlay{
+    width: 100%;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+}
+
+.nameMusic, .nameArtistMusic{
+
+    margin-top: 0.4rem;
+    font-size: x-small;
+    font-weight: bold;
+
+    margin-left: 1rem;
+}
 
 .musicFavoriteButton{
-    background-color: rgba(220, 20, 60, 0.795);
-    border: none;
-    border-radius: 1rem;
-    
+    background: none;
+	color: inherit;
+	border: none;
+	padding: 0;
+	font: inherit;
+	cursor: pointer;
+	outline: inherit;
+
+    margin-right: 0.6rem;
 }

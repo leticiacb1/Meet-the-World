@@ -2,10 +2,11 @@ import React from "react";
 import './header.css';
 import AccountCircleSharpIcon from '@mui/icons-material/AccountCircleSharp';
 import GitHubIcon from '@mui/icons-material/GitHub';
-
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import { useNavigate} from "react-router-dom";
+import logo from "./logo.png";
 
-function Header(){
+function Header(props){
 
     const navigate = useNavigate();
 
@@ -16,7 +17,10 @@ function Header(){
     
     return (
         <div className="header">
-            <h3 className="headerContent">Random Word</h3>
+            <button onClick={props.goTo} className="btn_icon">
+                <ArrowBackIcon sx={{ color: "white" , fontSize: 40 , display:props.condicao}}></ArrowBackIcon>
+            </button>
+            <img src={logo} className="headerLogo"></img>
             <div className="divIconsHeader">
                 <button onClick={goToPerfil} className="btn_icon">
                     <AccountCircleSharpIcon sx={{ color: "white" , fontSize: 40}}></AccountCircleSharpIcon>

@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from "react";
 import './interests.css';
-import AccountCircleSharpIcon from '@mui/icons-material/AccountCircleSharp';
-import GitHubIcon from '@mui/icons-material/GitHub';
 import { useNavigate, useLocation } from "react-router-dom";
+import StarIcon from '@mui/icons-material/Star';
 
 import Header from '../Header/header.js'
 
@@ -19,17 +18,16 @@ function Detalhes() {
     let [musics, setMusics] = useState([]);
 
     async function pegaMusicas(nomeDoPais) {
-        let response = await axios.get('http://ws.audioscrobbler.com/2.0/?method=geo.gettoptracks&country=' + nomeDoPais.toLowerCase() + '&api_key=' + api_key + '&format=json', { params: { limit: 10 } });
-        // let auxiMusics = [];
+        let response = await axios.get('http://ws.audioscrobbler.com/2.0/?method=geo.gettoptracks&country=' + nomeDoPais.toLowerCase() + '&api_key=' + api_key + '&format=json', { params: { limit: 6 } });
         const auxiMusics = response.data.tracks.track.slice(1,).map((track) => (
-            // auxiMusics.push(
             { "name": track.name, "artist": track.artist.name }
-            // )
+         
         ))
 
+        console.log(response)
+
         let musicsWithImg = await getImages(auxiMusics);
-        // console.log("EM PEGA MUSICAS")
-        // console.log(musicsWithImg)
+        
         return musicsWithImg
     }
 
@@ -50,12 +48,10 @@ function Detalhes() {
         axios.request(options).then(function (response) {
 
             response.data.articles.map((article) => (
-                auxiNews.push({ "title": article.title, "resume": article.summary.slice(0, 600), "media": article.media, "link": article.link })
+                auxiNews.push({ "title": article.title, "resume": article.summary.slice(0, 300), "media": article.media, "link": article.link })
             ))
 
             setNews(auxiNews);
-            // console.log(auxiNews)
-
         }).catch(function (error) {
             console.error(error);
         });
@@ -64,22 +60,6 @@ function Detalhes() {
 
     async function getImages(tracks) {
         const auxiMusics = [];
-
-        // let response;
-        // tracks.map(async function (track) {
-        //     response = await axios.get('https://deezerdevs-deezer.p.rapidapi.com/search', {
-        //         params: { q: track.name + " " + track.artist }, headers: {
-        //             'X-RapidAPI-Host': 'deezerdevs-deezer.p.rapidapi.com',
-        //             'X-RapidAPI-Key': '09d9de731fmshd33bae78ac7cd2cp17a01fjsn2d4af2cbc8e8',
-        //         }
-        //     });
-        //     try {
-        //         auxiMusics.push({ "name": track.name, "artist": track.artist, "img": response.data.data[0].album.cover })
-        //     }
-        //     catch {
-        //         auxiMusics.push({ "name": track.name, "artist": track.artist })
-        //     }
-        // })
         for (const track of tracks) {
             const res = await axios.get('https://deezerdevs-deezer.p.rapidapi.com/search', {
                 params: { q: track.name + " " + track.artist }, headers: {
@@ -95,22 +75,21 @@ function Detalhes() {
             }
         }
 
-        console.log("EM PEGA IMAGEM")
-        console.log(auxiMusics);
         return auxiMusics;
     }
 
     function goToPerfil() {
-        // console.log("Cliqueiiii")
         navigate('/favorits')
+    }
+
+    function backMap(){
+        navigate('/home')
     }
 
     useEffect(() => {
         pegaNoticias(countryName);
         pegaMusicas(countryName).then(
             (response) => {
-                // console.log("EXECUTEI USE EFFECTTTTTTTT !!!!!!!!!!!!!!!!!!!!")
-                // console.log(response)
                 setMusics(response);
             }
         );
@@ -120,10 +99,40 @@ function Detalhes() {
         console.log(musics)
     }, [musics])
 
-    return <div>
+    return <div className="containerInterests">
 
-        <Header></Header>
+        <Header goTo={backMap}></Header>
 
+        <div className="containerNewsMusic">
+        <div className="infosConteiner">
+            <div className="newsConteiner">
+                <div className="headerNews"><h2>News</h2></div>
+                <div className="newsCardConteiner">
+
+                    {news.map((noticias, index) => (
+                        <div className="newsCard" key={"noticias_" + index}>
+                            <div className="newsInfo">
+                                <img src={noticias.media} className="mediaNews" alt="newsImage" />
+                                <div className="contentTitle">
+                                    <h4 className="newsTitle">{noticias.title}</h4>
+                                </div>
+                                <div className="contentResume">
+                                    <div className="newsResume">{noticias.resume} </div>
+                                </div>
+
+                                <a className="readmoreTag" href={noticias.link} target="_blank">Read more</a>
+                            </div>
+                            <div className="divshareButton">
+                                <button className="shareButton">SHARE</button>
+                            </div>
+                        </div>
+
+                    ))}
+
+                </div>
+            </div>
+
+        </div>
         <div className="musicConteiner">
             <div className="headerMusic"><h2>Top Musics</h2></div>
             <div className="musiccardsConteiner">
@@ -141,44 +150,23 @@ function Detalhes() {
 
                         }
                         <div className="musicInfo">
-                            <h4>{musica.name}</h4>
-                            <button className="musicFavoriteButton">Favoritar</button>
+                            <div className="divHeaderMusic">
+                                <div className="nameMusic">{musica.name}</div>
+                                <button className="musicFavoriteButton">
+                                    <StarIcon  sx={{ color: "black" , fontSize: 15}}></StarIcon>
+                                </button>
+                            </div>
+                            <div className="divContentPlay">
+                                <div className="nameArtistMusic">Artist : {musica.artist}</div>
+                            </div>
                         </div>
                     </div>
 
                 ))}
             </div>
         </div>
-        <div className="infosConteiner">
-            <div className="newsConteiner">
-                <div className="headerNews"><h2>News</h2></div>
-                <div className="newsCardConteiner">
-
-                    {news.map((noticias, index) => (
-                        <div className="newsCard" key={"noticias_" + index}>
-                            <div className="newsInfo">
-                                <img src={noticias.media} className="mediaNews" alt="newsImage" />
-                                <div className="contentTitle">
-                                    <h4 className="newsTitle">{noticias.title}</h4>
-                                </div>
-                                <div className="contentResume">
-                                    <div className="newsResume">{noticias.resume} </div>
-                                </div>
-                            </div>
-                            <div className="divshareButton">
-                                <button className="shareButton">SHARE</button>
-                            </div>
-                            <a className="readmoreTag" href={noticias.link} target="_blank">Read more</a>
-                            
-                        </div>
-
-                    ))}
-
-                </div>
-            </div>
-
+        </div>;
         </div>
-    </div>;
 }
 
 export default Detalhes;
