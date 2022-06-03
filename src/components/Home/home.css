@@ -1,0 +1,42 @@
+#root, html, body,.containerMap, .App{
+    width: 100%;
+    height: 100%;
+}
+
+body{
+    background: white;
+    /* background:linear-gradient(0deg, 	#1E90FF, #01030c);
+    height: 100%;
+    margin: 0;
+    background-repeat: no-repeat;
+    background-attachment: fixed; */
+
+}
+
+.containerMap{
+    display: flex;
+    flex-direction: column;
+    /* justify-content: center; */
+    align-items: center;
+
+    width: 100%;
+}
+
+.screenMap{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 80%;
+    height: 80%;
+    margin-top: 5rem;
+    background-color: white; 
+    /* background:#01030c; */
+    box-shadow: 0 1px 12px rgba(0, 0, 0, 0.4);
+
+    /* border-radius: 0.8rem; */
+}
+
+.map{
+    width: 98%;
+    height: 98%; 
+}

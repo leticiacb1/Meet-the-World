@@ -3,6 +3,8 @@ import './App.css';
 
 import Login from './components/Login/login.js'
 import Register from './components/Register/register.js'
+import Home from './components/Home/home.js'
+import Interests from './components/Interests/interests.js'
 
 function App() {
   return (
@@ -11,6 +13,8 @@ function App() {
         <Routes >
           <Route exact path="/" element={<Login/>}/>
           <Route exact path="/register" element={<Register/>}/>
+          <Route exact path="/home" element={<Home/>}/>
+          <Route exact path="/interests" element={<Interests/>}/>
         </Routes >
       </Router>
     </div>

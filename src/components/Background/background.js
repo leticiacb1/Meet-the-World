@@ -2,7 +2,7 @@ import './background.css'
 
 function Background(){
     return (
-        <>
+        <div style = {{position:"absolute", top:"0", left:"0" , width:"100%", height:"100%", background:"linear-gradient(90deg,#1E90FF, #070e29)"}}>
         <div id="earth">
             <div class="halfShadow"></div>
             <div id="lands">
@@ -29,7 +29,7 @@ function Background(){
             <h1 class="eTitle">Random World</h1>
             <h4 class="eSubTitle">Explore and have fun</h4>
         </div>
-        </>
+        </div>
     );
 }
 
