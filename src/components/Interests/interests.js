@@ -8,6 +8,7 @@ import loadGif from './loadingGif.gif'
 
 const axios = require("axios");
 const api_key = 'd35271b5512d5f4a4cb3e77e2aadbb34'
+let serachIDlink = "https://www.youtube.com/embed/"
 
 
 function Detalhes() {
@@ -18,9 +19,10 @@ function Detalhes() {
     let [news, setNews] = useState(['']);
     let [musics, setMusics] = useState([]);
     let [loading, setLoading] = useState(true)
-
+    let [songNotSelected, setSongNotSelected] = useState(true);
+    
     async function pegaMusicas(nomeDoPais) {
-        let response = await axios.get('http://ws.audioscrobbler.com/2.0/?method=geo.gettoptracks&country=' + nomeDoPais.toLowerCase() + '&api_key=' + api_key + '&format=json', { params: { limit: 6 } });
+        let response = await axios.get('http://ws.audioscrobbler.com/2.0/?method=geo.gettoptracks&country=' + nomeDoPais.toLowerCase() + '&api_key=' + api_key + '&format=json', { params: { limit: 5 } });
         const auxiMusics = response.data.tracks.track.slice(1,).map((track) => (
             { "name": track.name, "artist": track.artist.name }
          
@@ -32,6 +34,23 @@ function Detalhes() {
         setLoading(false)
         
         return musicsWithImg
+    }
+
+    async function pegaYoutubeID(nomeDamusica, nomeDoArtista){
+        setSongNotSelected(true);
+        let response = await axios.get('https://simple-youtube-search.p.rapidapi.com/search', { params: {
+            query: nomeDamusica+' '+nomeDoArtista, safesearch: 'false'},
+            headers: {
+            'X-RapidAPI-Host': 'simple-youtube-search.p.rapidapi.com',
+            'X-RapidAPI-Key': '09d9de731fmshd33bae78ac7cd2cp17a01fjsn2d4af2cbc8e8'
+            }
+        });
+
+        const id = response.data.results[0].id;
+        console.log("O id da musica no YT é: "+ id);
+        serachIDlink = "https://www.youtube.com/embed/" + id + "?autoplay=1";
+        setSongNotSelected(false);
+
     }
 
     async function pegaNoticias(nomeDoPais) {
@@ -52,7 +71,7 @@ function Detalhes() {
 
             response.data.articles.map((article) => (
                 console.log(article.title.split(/[ ,]+/)),
-                auxiNews.push({ "title": article.title.split(/[ ,]+/).join(' '), "resume": article.summary.slice(0, 600), "media": article.media, "link": article.link })
+                auxiNews.push({ "title": article.title.split(/[ ,]+/).join(' '), "resume": article.summary.slice(0, 400), "media": article.media, "link": article.link })
             ))
             console.log("teste para ver se não há titles repetidos:")
             const filredOnce = [...new Map(auxiNews.map((article) => [article["title"], article])).values(),]
@@ -106,6 +125,11 @@ function Detalhes() {
         console.log(musics)
     }, [musics])
 
+    useEffect(()=>{
+        console.log("SongNot selected: "+ songNotSelected)
+    }, [songNotSelected])
+
+
     return <div className="containerInterests">
 
         <Header goTo={backMap}></Header>
@@ -155,7 +179,7 @@ function Detalhes() {
                                     <div className="photoDiv">
                                         <img className="musicPhoto" src="https://e7.pngegg.com/pngimages/185/464/png-clipart-regulate-g-funk-era-g-funk-album-funk-music-album-drum-thumbnail.png" alt="CD"></img>
                                     </div> :
-                                    <div className="photoDiv">
+                                    <div className="photoDiv" onClick={()=>pegaYoutubeID(musica.name, musica.artist)}>
                                         <img className="musicPhoto" src={musica.img} alt="album"></img>
                                     </div>
 
@@ -174,6 +198,25 @@ function Detalhes() {
                             </div>
 
                         ))}
+                    <div>
+                        <h5>Clique em uma imagem de música:</h5>
+                    </div>
+                    { songNotSelected ? 
+        
+                    <div>
+
+                    </div> : 
+
+                    <div>
+                        <iframe
+                            src= {serachIDlink}
+                            frameborder="0"
+                            allow="autoplay; encrypted-media"
+                            allowfullscreen
+                            title="video"
+                        />{" "}
+                    </div>
+                    }
                     </div>
                 </div>
                 </div>
