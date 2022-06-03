@@ -51,10 +51,14 @@ function Detalhes() {
         axios.request(options).then(function (response) {
 
             response.data.articles.map((article) => (
-                auxiNews.push({ "title": article.title, "resume": article.summary.slice(0, 300), "media": article.media, "link": article.link })
+                console.log(article.title.split(/[ ,]+/)),
+                auxiNews.push({ "title": article.title.split(/[ ,]+/).join(' '), "resume": article.summary.slice(0, 600), "media": article.media, "link": article.link })
             ))
+            console.log("teste para ver se não há titles repetidos:")
+            const filredOnce = [...new Map(auxiNews.map((article) => [article["title"], article])).values(),]
+            setNews(filredOnce);
+            console.log(auxiNews)
 
-            setNews(auxiNews);
         }).catch(function (error) {
             console.error(error);
         });
