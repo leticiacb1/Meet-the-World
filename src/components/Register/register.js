@@ -1,5 +1,5 @@
-import { Link, useNavigate , useLocation } from "react-router-dom";
-import  React , { useState, useEffect } from "react";
+import { useNavigate  } from "react-router-dom";
+import  React , { useState } from "react";
 
 import './register.css';
 import Backgroung from "../Background/background.js"
@@ -19,8 +19,29 @@ function Register() {
 
   function handleSubmit(event){
     event.preventDefault();
-    navigate('/');
+
+    axios({
+        method:'post',
+        url:"http://localhost:8000/api/users/", 
+        data:{
+           
+            "username": userName,
+            "email": email,
+            "password": password,
+            "first_name": firstName,
+            "last_name": lastName
+
+        },}).then(
+            (response)=>{
+                navigate('/');
+            }
+
+        , (e)=>{
+            alert("Email ou Username já cadastrados!");
+            navigate('/register');
+        })
   }
+
 
   return (
     <div className="screen">
@@ -32,22 +53,22 @@ function Register() {
                 
                 <div className="userCreate">
                     <label className="textRegister"> First Name</label>
-                    <input type="text" onChange={(firstName) => setFirstName(firstName.target.value)}/>
+                    <input type="text" onChange={(firstName) => setFirstName(firstName.target.value)} required/>
                 </div>
 
                 <div className="userCreate">
                     <label className="textRegister"> Last Name</label>
-                    <input type="text" onChange={(lastName) => setLastName(lastName.target.value)}/>
+                    <input type="text" onChange={(lastName) => setLastName(lastName.target.value)} required/>
                 </div>
 
                 <div className="userCreate">
                     <label className="textRegister"> Username</label>
-                    <input type="text" onChange={(username) => setUserName(username.target.value)}/>
+                    <input type="text" onChange={(username) => setUserName(username.target.value)} required/>
                 </div>
 
                 <div className="userCreate">
                     <label className="textRegister"> Email</label>
-                    <input type="text" onChange={(email) => setEmail(email.target.value)}/>
+                    <input type="text" onChange={(email) => setEmail(email.target.value)} required/>
                 </div>
 
                 <div className="userCreate">
@@ -67,7 +88,7 @@ function Register() {
                 
                 <div className="userCreate">
                     <label className="textRegister"> Password  </label>
-                    <input type="password" onChange={(password) => setPassword(password.target.value)}/>
+                    <input type="password" onChange={(password) => setPassword(password.target.value)} required/>
                 </div>
 
                 <div className="divButtonCreate">
