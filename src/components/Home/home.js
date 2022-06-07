@@ -7,7 +7,7 @@ import L from 'leaflet';
 import { MapContainer, TileLayer, useMap, Map, Marker, Popup } from 'react-leaflet'
 import { useNavigate , useLocation} from "react-router-dom";
 import Header from '../Header/header.js'
-
+  
 const axios = require("axios");
 
 const paisesComCoordenadas = [
@@ -397,9 +397,13 @@ function pegaNoticias(nomeDoPais){
 function Mapa(){
   const navigate = useNavigate();
   const location = useLocation();
+  const username = location.state.username;
+  const token = location.state.token;
+  console.log("O token recebido na home foi: "+token);
+  
 
   function goToDetails(name){
-    navigate('/interests', {state: {country: name}} );
+    navigate('/interests', {state: {country: name, username : username, token: token}} );
   }    
 
   function goToPerfil(){

@@ -14,19 +14,19 @@ function Login() {
   const navigate = useNavigate();
 
   function handleSubmit(event){
-    event.preventDefault();
+    event.preventDefault();  
 
     axios({
         method:'post',
         url:"http://localhost:8000/api/token/", 
         data:{
             "username": user,
-            "password": password
+            "password": password,
         },}).then(
             (response)=>{
                 if (response.status === 200){
-                    setToken(response.data.status)
-                    navigate('/home', {state:{username:user, token:token}})
+                    setToken(response.data.token)
+                    navigate('/home', {state:{username:user, token:response.data.token}})
             }
 
         }, (e)=>{

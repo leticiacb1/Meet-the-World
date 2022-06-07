@@ -17,6 +17,9 @@ function Detalhes() {
     const navigate = useNavigate();
     const location = useLocation();
     const countryName = location.state.country;
+    const username = location.state.username;
+    const token = location.state.token;
+    console.log("O token recebido na Interests foi: "+location.state.token);
 
     let [news, setNews] = useState(['']);
     let [musics, setMusics] = useState([]);
@@ -52,6 +55,27 @@ function Detalhes() {
         console.log("O id da musica no YT é: "+ id);
         serachIDlink = "https://www.youtube.com/embed/" + id + "?autoplay=1";
         setSongNotSelected(false);
+
+    }
+
+    async function favoritaMusica(nomeDamusica, nomeDoArtista, srcImg){
+        axios({
+            method:'post',
+            url:`http://localhost:8000/api/musics/`, 
+            data:{
+                "titulo": nomeDamusica,
+                "artista": nomeDoArtista,
+                "img": srcImg, 
+            },
+            headers: {
+                'Authorization': `Token ${token}`
+              }
+            }).then(
+                (response)=>{
+                    console.log(response)
+            }, (e)=>{
+                alert(e);
+            })
 
     }
 
@@ -195,7 +219,7 @@ function Detalhes() {
                                 <div className="musicInfo">
                                     <div className="divHeaderMusic">
                                         <div className="nameMusic">{musica.name}</div>
-                                        <button className="musicFavoriteButton">
+                                        <button className="musicFavoriteButton" onClick={()=>favoritaMusica(musica.name, musica.artist, musica.img)}>
                                             <StarIcon  sx={{ color: "black" , fontSize: 15}}></StarIcon>
                                         </button>
                                     </div>
