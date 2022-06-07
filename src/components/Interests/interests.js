@@ -14,11 +14,14 @@ let serachIDlink = "https://www.youtube.com/embed/"
 
 
 function Detalhes() {
+
     const navigate = useNavigate();
     const location = useLocation();
+
     const countryName = location.state.country;
     const username = location.state.username;
     const token = location.state.token;
+
     console.log("O token recebido na Interests foi: "+location.state.token);
 
     let [news, setNews] = useState(['']);
@@ -55,27 +58,6 @@ function Detalhes() {
         console.log("O id da musica no YT é: "+ id);
         serachIDlink = "https://www.youtube.com/embed/" + id + "?autoplay=1";
         setSongNotSelected(false);
-
-    }
-
-    async function favoritaMusica(nomeDamusica, nomeDoArtista, srcImg){
-        axios({
-            method:'post',
-            url:`http://localhost:8000/api/musics/`, 
-            data:{
-                "titulo": nomeDamusica,
-                "artista": nomeDoArtista,
-                "img": srcImg, 
-            },
-            headers: {
-                'Authorization': `Token ${token}`
-              }
-            }).then(
-                (response)=>{
-                    console.log(response)
-            }, (e)=>{
-                alert(e);
-            })
 
     }
 
@@ -130,12 +112,57 @@ function Detalhes() {
         return auxiMusics;
     }
 
+    async function favoritaMusica(nomeDamusica, nomeDoArtista, srcImg){
+        axios({
+            method:'post',
+            url:`http://localhost:8000/api/musics/`, 
+            data:{
+                "titulo": nomeDamusica,
+                "artista": nomeDoArtista,
+                "img": srcImg, 
+            },
+            headers: {
+                'Authorization': `Token ${token}`
+              }
+            }).then(
+                (response)=>{
+                    console.log(response)
+                    alert("Musica favoritada !");
+            }, (e)=>{
+                alert(e);
+            })
+
+    }
+
+    function favoritaNews(img,title,content,link){
+        axios({
+            method:'post',
+            url:"http://localhost:8000/api/newss/",
+            headers:{
+                'Authorization': `Token ${token}`
+            },
+            data:{
+                "title":title,
+                "content":content,
+                "img":img,
+                "link":link,
+                "user":username
+            },}).then(
+                (response) => {
+                    console.log(response)
+                    alert("Noticia favoritada !");
+                }, (e) => {
+                    console.log(e)
+                }
+            )
+    }
+
     function goToPerfil() {
         navigate('/favorits')
     }
 
     function backMap(){
-        navigate('/home')
+        navigate('/home', {state:{username:username, token:token}})
     }
 
     useEffect(() => {
@@ -176,6 +203,9 @@ function Detalhes() {
                             {news.map((noticias, index) => (
                                 <div className="newsCard" key={"noticias_" + index}>
                                     <div className="newsInfo">
+                                        <button className="newsFavoriteButton" onClick={()=>favoritaNews(noticias.media, noticias.title, noticias.resume, noticias.link)}>
+                                            <StarIcon  sx={{ color: "black" , fontSize: 15}} className="estrela"></StarIcon>
+                                        </button>
                                         <img src={noticias.media} className="mediaNews" alt="newsImage" />
                                         <div className="contentTitle">
                                             <h4 className="newsTitle">{noticias.title}</h4>
@@ -220,7 +250,7 @@ function Detalhes() {
                                     <div className="divHeaderMusic">
                                         <div className="nameMusic">{musica.name}</div>
                                         <button className="musicFavoriteButton" onClick={()=>favoritaMusica(musica.name, musica.artist, musica.img)}>
-                                            <StarIcon  sx={{ color: "black" , fontSize: 15}}></StarIcon>
+                                            <StarIcon  sx={{ color: "black" , fontSize: 15}} className="estrela"></StarIcon>
                                         </button>
                                     </div>
                                     <div className="divContentPlay">

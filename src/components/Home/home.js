@@ -425,9 +425,9 @@ function Mapa(){
                   />
 
 
-                  {paisesComCoordenadas.map((e)=>{
+                  {paisesComCoordenadas.map((e, index)=>{
                   return(
-                      <Marker position={e.coordenadas} icon={pointIcon}>
+                      <Marker position={e.coordenadas} icon={pointIcon} key={"marker_"+index}>
                           <Popup>
                               <a onClick={()=>goToDetails(e.name)}>{e.name}</a>
                           </Popup>

@@ -9,7 +9,6 @@ function Login() {
 
   const [user, setUser] = useState('') 
   const [password, setPassword] = useState('')
-  const [token, setToken] = useState('')
 
   const navigate = useNavigate();
 
@@ -25,7 +24,6 @@ function Login() {
         },}).then(
             (response)=>{
                 if (response.status === 200){
-                    setToken(response.data.token)
                     navigate('/home', {state:{username:user, token:response.data.token}})
             }
 

@@ -277,7 +277,7 @@ div .header{
     margin-left: 1rem;
 }
 
-.musicFavoriteButton{
+.musicFavoriteButton, .newsFavoriteButton{
     background: none;
 	color: inherit;
 	border: none;
@@ -288,6 +288,24 @@ div .header{
 
     margin-right: 0.6rem;
 } 
+
+.newsFavoriteButton{
+    position:absolute;
+    margin-bottom: 1.5rem;
+    margin-left: -8rem;
+
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.8);
+    border-radius: 0.2rem;
+
+    background-color: rgb(18, 27, 64);
+    
+    height: 2rem;
+    width: 2rem;
+}
+
+.estrela:hover{
+    color:yellow;
+}
 
 .infoMusicPlayer{
     width: 100%;
