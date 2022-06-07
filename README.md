@@ -2,7 +2,7 @@
 ##### Desenvolvido por Lorran Machado, Letícia Coelho e Lídia Alves
 ###### Backend disponível [aqui](https://github.com/LidiaDomingos/backend-LLL).
 
-O site tem como objetivo o usuário visualizar as notícias em qualquer lugar do mundo, além de ter acesso ás músicas mais tocadas em tal local. O usuário pode salvar as notíciais e músicas que mais o interessam, tendo em seu perfil essas informações.
+O site tem como objetivo o usuário visualizar as notícias em qualquer lugar do mundo, além de ter acesso às músicas mais tocadas em tal local. O usuário pode salvar as notíciais e músicas que mais o interessam, tendo em seu perfil essas informações.
 
 APIs e bibliotecas utilizadas: 
 - https://react-leaflet.js.org/
