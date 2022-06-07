@@ -17,6 +17,11 @@ function Register() {
 
   const navigate = useNavigate();
 
+  function onChangeValue(event) {
+    setRegion(event.target.value);
+    console.log(event.target.value);
+}
+
   function handleSubmit(event){
     event.preventDefault();
 
@@ -29,7 +34,8 @@ function Register() {
             "email": email,
             "password": password,
             "first_name": firstName,
-            "last_name": lastName
+            "last_name": lastName,
+            "region": region,
 
         },}).then(
             (response)=>{
@@ -71,17 +77,17 @@ function Register() {
                     <input type="text" onChange={(email) => setEmail(email.target.value)} required/>
                 </div>
 
-                <div className="userCreate">
+                <div className="userCreate" onChange={(event)=>onChangeValue(event)}>
                     <label className="textRegister">Region</label>
                     <select name="region" id="region">
                         <option value="default"  selected disabled hidden>region</option>
-                        <option value="volvo">Europe</option>
-                        <option value="saab">Asia</option>
-                        <option value="opel">North America</option>
-                        <option value="audi">South America</option>
-                        <option value="opel">Africa</option>
-                        <option value="audi">Australia</option>
-                        <option value="opel">Antarctica</option>
+                        <option value="Europe">Europe</option>
+                        <option value="Asia">Asia</option>
+                        <option value="North">North America</option>
+                        <option value="South">South America</option>
+                        <option value="Africa">Africa</option>
+                        <option value="Australia">Australia</option>
+                        <option value="Antarctica">Antarctica</option>
                     </select>
                     <br></br>
                 </div>
