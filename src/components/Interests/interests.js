@@ -19,6 +19,10 @@ function Detalhes() {
     const navigate = useNavigate();
     const location = useLocation();
 
+    let [modalType, setModalType] = useState('');
+    let [modalButtonText, setModalButtonText] = useState('');
+    let [modalAction, setModalAction] = useState(function(){console.log("hello world!")});
+
     const [Modal, toggleModal] = useModal({
         withBackground: {
           closable: true,
@@ -26,15 +30,14 @@ function Detalhes() {
           customClassName: "my-background",
         },
         withCloseButton: {
-          type: "default", // 'default', 'rounded', 'text'
+          type: 'default', // 'default', 'rounded', 'text' //para o favorite será: 'text'
           text: "",
           customClassName: "my-close-button",
         },
         withControlButton: {
-          type: "default", // 'default', 'outlined', 'text'
-          text: "Copiar",
+          type: modalType, // 'default', 'outlined', 'text' //para o favorite será: 'text'
+          text: modalButtonText,
           customClassName: "my-control-button",
-          action: () => clicouCopiar(),
         },
         additional: {
           customWrapperClassName: "",
@@ -46,19 +49,24 @@ function Detalhes() {
     const username = location.state.username;
     const token = location.state.token;
 
-    function clicouCopiar(){
+    function clicouCopiar (){
         navigator.clipboard.writeText(linkModal);
-        let buttom = document.querySelector('#root > div.o1fCJ4SPOOXey3sBbLEc.my-background.tl8x3L7ex3ReMzLpRLCE.D6oc2nB_FUdz4lzqrGmt > div > div.PrZTBv6qoJj5d_573Lxh.mpL_4tcxkaKdgEz2ueyU.my-control-button');
+        console.log("O valor do link copiado é: "+ linkModal)
+        let buttom = document.querySelector("#root > div.o1fCJ4SPOOXey3sBbLEc.my-background.tl8x3L7ex3ReMzLpRLCE.D6oc2nB_FUdz4lzqrGmt > div > div:nth-child(4) > div > div > button");
+        console.log(buttom);
         buttom.innerHTML = 'Copiado!';
         buttom.style.backgroundColor = 'green';
-        buttom.style.border='none';
-        buttom.style.color = 'white';
-        buttom.style.background = 'green';
-
     }
+
     let [news, setNews] = useState(['']);
     let [musics, setMusics] = useState([]);
     let [linkModal, setLinkModal] = useState('');
+    
+    let [modalContentType, setModalContentType] = useState('');
+    let [noticiaFavoritada, setNoticiaFavoritada] = useState(['']);
+    let [musicaFavoritada, setMusicaFavoritada] = useState(['']);
+    let [subtitleModal, setSubtitleModal] = useState('');
+    let [titleModal, setTitleModal] = useState('');
     let [loading, setLoading] = useState(true)
     let [songNotSelected, setSongNotSelected] = useState(true);
     
@@ -66,7 +74,7 @@ function Detalhes() {
         let response = await axios.get('http://ws.audioscrobbler.com/2.0/?method=geo.gettoptracks&country=' + nomeDoPais.toLowerCase() + '&api_key=' + api_key + '&format=json', { params: { limit: 6 } });
         const auxiMusics = response.data.tracks.track.slice(1,).map((track) => (
             { "name": track.name, "artist": track.artist.name }
-         
+
         ))
 
         console.log(response)
@@ -160,7 +168,17 @@ function Detalhes() {
             }).then(
                 (response)=>{
                     console.log(response)
-                    alert("Musica favoritada !");
+                    
+                    setMusicaFavoritada({"name":nomeDamusica, "artista":nomeDoArtista, "img":srcImg})
+                    console.log("Favoritando musica")
+
+                    setTitleModal("Favoritar");
+                    setSubtitleModal("A música abaixo foi adiciana as favoritas:")
+                    setModalContentType('music');
+                    setModalType('text');
+                    setModalButtonText("  ");
+                    setModalAction(()=>console.log("Favoritar music"))
+                    toggleModal();
             }, (e)=>{
                 alert(e);
             })
@@ -183,7 +201,16 @@ function Detalhes() {
             },}).then(
                 (response) => {
                     console.log(response)
-                    alert("Noticia favoritada !");
+                    //alert("Noticia favoritada !");
+                    setNoticiaFavoritada({"title":title, "resume": content, "media":img, "link":link})
+                    setTitleModal("Favoritar");
+                    setSubtitleModal("A notícia abaixo foi adiciana as favoritas:")
+                    setModalContentType('news');
+                    setModalType('text');
+                    setModalButtonText("  ");
+                    setModalAction(()=>console.log("Favoritar news"))
+                    toggleModal();
+        
                 }, (e) => {
                     console.log(e)
                 }
@@ -217,8 +244,20 @@ function Detalhes() {
 
 
     function activateModalAndUpdateLink(novoLink){
+        setTitleModal("Compartilhar");
+        setSubtitleModal("Copie o link abaixo para compartilhar essa notícia:");
+        setModalContentType('link');
         setLinkModal(novoLink);
+        console.log("O link novo do modal é: "+ linkModal);
+        setModalButtonText('Copiar');
+        setModalType('text');
+        setModalButtonText("  ");
+        console.log("O modal action é:");
         toggleModal();
+        console.log("Estou rodando aqui")
+        
+        
+        
     }
 
 
@@ -246,6 +285,7 @@ function Detalhes() {
                                             <StarIcon  sx={{ color: "black" , fontSize: 15}} className="estrela"></StarIcon>
                                         </button>
                                         <img src={noticias.media} className="mediaNews" alt="newsImage" />
+                                        
                                         <div className="contentTitle">
                                             <h4 className="newsTitle">{noticias.title}</h4>
                                         </div>
@@ -264,10 +304,59 @@ function Detalhes() {
 
                         </div>
                     </div>
-                    <Modal title="Compartilhar" subtitle="Copie o link abaixo para compartilhar essa notícia:">
-                            <input type="text" aria-live="polite" id="link" className="inputLink"  aria-invalid="false" value={linkModal}/>
-                     </Modal>
+                    <Modal title={titleModal} subtitle={subtitleModal}>
 
+                            {modalContentType == "link" ? 
+                            <>
+                            <input type="text" aria-live="polite" id="link" className="inputLink"  aria-invalid="false" value={linkModal}/>
+                                <div className="divshareButton">
+                                        <button className="copyLinkButton" onClick={()=>clicouCopiar()}>Copiar</button>
+                                </div>
+                            </> :
+                            <>
+                            {modalContentType == "news" ? 
+                            <div className="newsCardFavorite" key={"noticias"}>
+                                <div className="newsInfo">
+                                    <img src={noticiaFavoritada.media} className="mediaNews" alt="newsImage" />
+                                    <div className="contentTitle">
+                                        <h4 className="newsTitle">{noticiaFavoritada.title}</h4>
+                                    </div>
+                                    <div className="contentResume">
+                                        <div className="newsResume">{noticiaFavoritada.resume} </div>
+                                    </div>
+                                    <div className="tag">
+                                        <a className="readmoreTagFav" href={noticiaFavoritada.link} target="_blank">Read more</a>
+                                    </div>
+                                </div>
+                            </div>
+                            :
+                                <>
+                                    <div className="musicCardFav">
+
+                                    {musicaFavoritada.img == null ?
+                                        <div className="photoDivFav">
+                                            <img className="musicPhoto" src="https://e7.pngegg.com/pngimages/185/464/png-clipart-regulate-g-funk-era-g-funk-album-funk-music-album-drum-thumbnail.png" alt="CD"></img>
+                                        </div> :
+                                        <div className="photoDiv">
+                                            <img className="musicPhoto" src={musicaFavoritada.img} alt="album"></img>
+                                        </div>
+
+                                    }
+                                    <div className="musicInfoFav">
+                                        <div className="divHeaderMusic">
+                                            <div className="nameMusic">{musicaFavoritada.name}</div>
+                                        </div>
+                                        <div className="divContentPlay">
+                                            <div className="nameArtistMusic">Artist : {musicaFavoritada.artista}</div>
+                                        </div>
+                                    </div>
+                                    </div>
+                                </> 
+                            }
+                            </>
+                            }
+
+                    </Modal>
                 </div>
                 <div className="musicConteiner">
                     <div className="headerMusic">
