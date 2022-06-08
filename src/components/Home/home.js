@@ -416,7 +416,7 @@ function Mapa(){
               <div className="containerMap">
 
                 
-                <Header condicao="None" goTo="None"></Header>
+                <Header condicao="None" goTo="None" username = {username} token = {token}></Header>
                 <div className="screenMap">
                   <MapContainer className="map" center={[32, 0]} zoom={1.5} scrollWheelZoom={false} zoomControl={true} dragging={true} >
                   <TileLayer className="teste2"

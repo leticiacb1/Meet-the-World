@@ -190,9 +190,6 @@ function Detalhes() {
             )
     }
 
-    function goToPerfil() {
-        navigate('/favorits')
-    }
 
     function backMap(){
         navigate('/home', {state:{username:username, token:token}})
@@ -224,7 +221,7 @@ function Detalhes() {
 
     return <div className="containerInterests">
 
-        <Header goTo={backMap}></Header>
+        <Header goTo={backMap} username = {username} token = {token}></Header>
 
         { loading ? 
         
@@ -276,8 +273,8 @@ function Detalhes() {
                     </div>
                     <div className="musiccardsConteiner">
 
-                        {musics.map((musica) => (
-                            <div className="musicCard" key={musica.title}>
+                        {musics.map((musica, index) => (
+                            <div className="musicCard" key={"musica_" + index}>
 
                                 {musica.img == null ?
                                     <div className="photoDiv">
