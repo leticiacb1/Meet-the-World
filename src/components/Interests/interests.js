@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import './interests.css';
 import { useNavigate, useLocation } from "react-router-dom";
 import StarIcon from '@mui/icons-material/Star';
+import useModal from "use-modal-element";
 
 import Header from '../Header/header.js'
 import loadGif from './loadingGif.gif'
@@ -18,14 +19,46 @@ function Detalhes() {
     const navigate = useNavigate();
     const location = useLocation();
 
+    const [Modal, toggleModal] = useModal({
+        withBackground: {
+          closable: true,
+          scrollable: false,
+          customClassName: "my-background",
+        },
+        withCloseButton: {
+          type: "default", // 'default', 'rounded', 'text'
+          text: "",
+          customClassName: "my-close-button",
+        },
+        withControlButton: {
+          type: "default", // 'default', 'outlined', 'text'
+          text: "Copiar",
+          customClassName: "my-control-button",
+          action: () => clicouCopiar(),
+        },
+        additional: {
+          customWrapperClassName: "",
+          fullyShieldedMobile: true,
+        },
+      });
+
     const countryName = location.state.country;
     const username = location.state.username;
     const token = location.state.token;
 
-    console.log("O token recebido na Interests foi: "+location.state.token);
+    function clicouCopiar(){
+        navigator.clipboard.writeText(linkModal);
+        let buttom = document.querySelector('#root > div.o1fCJ4SPOOXey3sBbLEc.my-background.tl8x3L7ex3ReMzLpRLCE.D6oc2nB_FUdz4lzqrGmt > div > div.PrZTBv6qoJj5d_573Lxh.mpL_4tcxkaKdgEz2ueyU.my-control-button');
+        buttom.innerHTML = 'Copiado!';
+        buttom.style.backgroundColor = 'green';
+        buttom.style.border='none';
+        buttom.style.color = 'white';
+        buttom.style.background = 'green';
 
+    }
     let [news, setNews] = useState(['']);
     let [musics, setMusics] = useState([]);
+    let [linkModal, setLinkModal] = useState('');
     let [loading, setLoading] = useState(true)
     let [songNotSelected, setSongNotSelected] = useState(true);
     
@@ -183,6 +216,12 @@ function Detalhes() {
     }, [songNotSelected])
 
 
+    function activateModalAndUpdateLink(novoLink){
+        setLinkModal(novoLink);
+        toggleModal();
+    }
+
+
     return <div className="containerInterests">
 
         <Header goTo={backMap}></Header>
@@ -217,7 +256,7 @@ function Detalhes() {
                                         <a className="readmoreTag" href={noticias.link} target="_blank">Read more</a>
                                     </div>
                                     <div className="divshareButton">
-                                        <button className="shareButton">SHARE</button>
+                                        <button className="shareButton" onClick={()=>activateModalAndUpdateLink(noticias.link)}>SHARE</button>
                                     </div>
                                 </div>
 
@@ -225,6 +264,9 @@ function Detalhes() {
 
                         </div>
                     </div>
+                    <Modal title="Compartilhar" subtitle="Copie o link abaixo para compartilhar essa notícia:">
+                            <input type="text" aria-live="polite" id="link" className="inputLink"  aria-invalid="false" value={linkModal}/>
+                     </Modal>
 
                 </div>
                 <div className="musicConteiner">
@@ -262,7 +304,7 @@ function Detalhes() {
                         ))}
                     <div className="infoMusicPlayer">
                         <div className="instructiosPlayMusic"> 
-                            <div className="helptext">Ouça as músicas Top5 do país! Clique em uma música !</div>
+                            <div className="helptext">Ouça as músicas Top5 do país! Clique na capa de uma música!</div>
                         </div>
                     </div>
                     { songNotSelected ? 
