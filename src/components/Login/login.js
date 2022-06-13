@@ -17,7 +17,7 @@ function Login() {
 
     axios({
         method:'post',
-        url:"http://localhost:8000/api/token/", 
+        url:"https://frozen-sierra-18977.herokuapp.com/api/token/", 
         data:{
             "username": user,
             "password": password,

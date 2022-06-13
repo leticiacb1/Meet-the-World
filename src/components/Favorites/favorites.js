@@ -29,7 +29,7 @@ export default function Favorites() {
         async function carrega ()  {
             await axios({
                 method:'get',
-                url:`http://localhost:8000/api/newss/`, 
+                url:`https://frozen-sierra-18977.herokuapp.com/api/newss/`, 
                 headers: {
                     'Authorization': `Token ${token}`
                   }
@@ -41,7 +41,7 @@ export default function Favorites() {
                 });
             await axios({
                 method:'get',
-                url:`http://localhost:8000/api/musics/`,
+                url:`https://frozen-sierra-18977.herokuapp.com/api/musics/`,
                 headers: {
                     'Authorization': `Token ${token}`
                     }

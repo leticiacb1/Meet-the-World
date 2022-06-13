@@ -156,7 +156,7 @@ function Detalhes() {
     async function favoritaMusica(nomeDamusica, nomeDoArtista, srcImg){
         axios({
             method:'post',
-            url:`http://localhost:8000/api/musics/`, 
+            url:`https://frozen-sierra-18977.herokuapp.com/api/musics/`, 
             data:{
                 "titulo": nomeDamusica,
                 "artista": nomeDoArtista,
@@ -188,7 +188,7 @@ function Detalhes() {
     function favoritaNews(img,title,content,link){
         axios({
             method:'post',
-            url:"http://localhost:8000/api/newss/",
+            url:"https://frozen-sierra-18977.herokuapp.com/api/newss/",
             headers:{
                 'Authorization': `Token ${token}`
             },

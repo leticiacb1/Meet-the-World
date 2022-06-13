@@ -27,7 +27,7 @@ function Register() {
 
     axios({
         method:'post',
-        url:"http://localhost:8000/api/users/", 
+        url:"https://frozen-sierra-18977.herokuapp.com/api/users/", 
         data:{
            
             "username": userName,
