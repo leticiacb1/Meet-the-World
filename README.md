@@ -26,7 +26,7 @@ O site tem como objetivo o usuário visualizar as notícias em qualquer lugar do
 
 - CRUD feito em Django - [Backend](https://github.com/LidiaDomingos/backend-LLL)
 
-- Autenticação de usuário = [Backend](https://github.com/LidiaDomingos/backend-LLL)
+- Autenticação de usuário - [Backend](https://github.com/LidiaDomingos/backend-LLL)
 
 - Interação com busca do youtube para o play de músicas clicadas.
 
