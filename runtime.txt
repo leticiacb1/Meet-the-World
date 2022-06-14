@@ -1,2 +1,1 @@
-node-v16.15.0
-Python 3.9.2
+python-3.9.2
