@@ -71,7 +71,7 @@ function Detalhes() {
     let [songNotSelected, setSongNotSelected] = useState(true);
     
     async function pegaMusicas(nomeDoPais) {
-        let response = await axios.get('http://ws.audioscrobbler.com/2.0/?method=geo.gettoptracks&country=' + nomeDoPais.toLowerCase() + '&api_key=' + api_key + '&format=json', { params: { limit: 6 } });
+        let response = await axios.get('https://ws.audioscrobbler.com/2.0/?method=geo.gettoptracks&country=' + nomeDoPais.toLowerCase() + '&api_key=' + api_key + '&format=json', { params: { limit: 6 } });
         const auxiMusics = response.data.tracks.track.slice(1,).map((track) => (
             { "name": track.name, "artist": track.artist.name }
 
