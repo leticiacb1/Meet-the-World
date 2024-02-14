@@ -72,6 +72,8 @@ Acesse esse [repositório](https://github.com/LidiaDomingos/backend-LLL) para ma
 
 **Acessando projeto via web (Aplicação Heroku)**
 
+(Desatualizado - Necessitando migração)
+
 1. Apenas clique <a href = "https://serene-bastion-41676.herokuapp.com/">aqui</a>.
 
 
